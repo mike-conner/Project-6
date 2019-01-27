@@ -12,9 +12,24 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
+    @IBAction func entitySelection(_ sender: UIBarButtonItem) {
+        switch sender.tag {
+        case 0:
+            print("characters")
+        case 1:
+            print("vehicles")
+        case 2:
+            print("starships")
+        default:
+            break
+        }
+        
+    }
+    
+    
 
 }
 

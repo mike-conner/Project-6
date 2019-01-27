@@ -16,6 +16,8 @@
 		13E199D721FE387D003D1777 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199D621FE387D003D1777 /* Vehicle.swift */; };
 		13E199D921FE3885003D1777 /* Starship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199D821FE3885003D1777 /* Starship.swift */; };
 		13E199DB21FE3BFE003D1777 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199DA21FE3BFE003D1777 /* Stub.swift */; };
+		13E199DD21FE51E0003D1777 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E199DC21FE51E0003D1777 /* Default-568h@2x.png */; };
+		13E199DF21FE52FE003D1777 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199DE21FE52FE003D1777 /* SearchResultsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		13E199D621FE387D003D1777 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		13E199D821FE3885003D1777 /* Starship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Starship.swift; sourceTree = "<group>"; };
 		13E199DA21FE3BFE003D1777 /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
+		13E199DC21FE51E0003D1777 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		13E199DE21FE52FE003D1777 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +50,7 @@
 		13E199B321FE37E6003D1777 = {
 			isa = PBXGroup;
 			children = (
+				13E199DC21FE51E0003D1777 /* Default-568h@2x.png */,
 				13E199BE21FE37E6003D1777 /* Project-6 */,
 				13E199BD21FE37E6003D1777 /* Products */,
 			);
@@ -96,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				13E199C121FE37E6003D1777 /* ViewController.swift */,
+				13E199DE21FE52FE003D1777 /* SearchResultsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -159,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13E199CA21FE37E6003D1777 /* LaunchScreen.storyboard in Resources */,
+				13E199DD21FE51E0003D1777 /* Default-568h@2x.png in Resources */,
 				13E199C721FE37E6003D1777 /* Assets.xcassets in Resources */,
 				13E199C521FE37E6003D1777 /* Main.storyboard in Resources */,
 			);
@@ -174,6 +181,7 @@
 				13E199D721FE387D003D1777 /* Vehicle.swift in Sources */,
 				13E199DB21FE3BFE003D1777 /* Stub.swift in Sources */,
 				13E199D921FE3885003D1777 /* Starship.swift in Sources */,
+				13E199DF21FE52FE003D1777 /* SearchResultsController.swift in Sources */,
 				13E199D521FE3870003D1777 /* Character.swift in Sources */,
 				13E199C221FE37E6003D1777 /* ViewController.swift in Sources */,
 				13E199C021FE37E6003D1777 /* AppDelegate.swift in Sources */,
