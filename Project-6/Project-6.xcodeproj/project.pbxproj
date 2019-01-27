@@ -12,6 +12,10 @@
 		13E199C521FE37E6003D1777 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13E199C321FE37E6003D1777 /* Main.storyboard */; };
 		13E199C721FE37E6003D1777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13E199C621FE37E6003D1777 /* Assets.xcassets */; };
 		13E199CA21FE37E6003D1777 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13E199C821FE37E6003D1777 /* LaunchScreen.storyboard */; };
+		13E199D521FE3870003D1777 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199D421FE3870003D1777 /* Character.swift */; };
+		13E199D721FE387D003D1777 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199D621FE387D003D1777 /* Vehicle.swift */; };
+		13E199D921FE3885003D1777 /* Starship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199D821FE3885003D1777 /* Starship.swift */; };
+		13E199DB21FE3BFE003D1777 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199DA21FE3BFE003D1777 /* Stub.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		13E199C621FE37E6003D1777 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13E199C921FE37E6003D1777 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13E199CB21FE37E6003D1777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13E199D421FE3870003D1777 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		13E199D621FE387D003D1777 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		13E199D821FE3885003D1777 /* Starship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Starship.swift; sourceTree = "<group>"; };
+		13E199DA21FE3BFE003D1777 /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,42 @@
 		13E199BE21FE37E6003D1777 /* Project-6 */ = {
 			isa = PBXGroup;
 			children = (
+				13E199D321FE3847003D1777 /* Controllers */,
+				13E199D221FE3831003D1777 /* Views */,
+				13E199D121FE3824003D1777 /* Models */,
 				13E199BF21FE37E6003D1777 /* AppDelegate.swift */,
-				13E199C121FE37E6003D1777 /* ViewController.swift */,
-				13E199C321FE37E6003D1777 /* Main.storyboard */,
 				13E199C621FE37E6003D1777 /* Assets.xcassets */,
 				13E199C821FE37E6003D1777 /* LaunchScreen.storyboard */,
 				13E199CB21FE37E6003D1777 /* Info.plist */,
 			);
 			path = "Project-6";
+			sourceTree = "<group>";
+		};
+		13E199D121FE3824003D1777 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				13E199D421FE3870003D1777 /* Character.swift */,
+				13E199D621FE387D003D1777 /* Vehicle.swift */,
+				13E199D821FE3885003D1777 /* Starship.swift */,
+				13E199DA21FE3BFE003D1777 /* Stub.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		13E199D221FE3831003D1777 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				13E199C321FE37E6003D1777 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		13E199D321FE3847003D1777 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				13E199C121FE37E6003D1777 /* ViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +171,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13E199D721FE387D003D1777 /* Vehicle.swift in Sources */,
+				13E199DB21FE3BFE003D1777 /* Stub.swift in Sources */,
+				13E199D921FE3885003D1777 /* Starship.swift in Sources */,
+				13E199D521FE3870003D1777 /* Character.swift in Sources */,
 				13E199C221FE37E6003D1777 /* ViewController.swift in Sources */,
 				13E199C021FE37E6003D1777 /* AppDelegate.swift in Sources */,
 			);
