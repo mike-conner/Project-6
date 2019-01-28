@@ -29,7 +29,6 @@ class SearchResultsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SearchResultsController.dismissSearchResultsController))
         configureView()
         
@@ -42,6 +41,7 @@ class SearchResultsController: UITableViewController {
     func configureView() {
         guard let stub = stub else { return }
         
+        navigationItem.title = "Characters"
         resultsName.text = stub.character.characterName
         makeLabel.text = "Born"
         makeResultLabel.text = stub.character.dateOfBirth
