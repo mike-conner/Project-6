@@ -10,6 +10,8 @@ import UIKit
 
 class SearchResultsController: UITableViewController {
     
+    var stub: Stub?
+
     @IBOutlet weak var resultsName: UILabel!
     @IBOutlet weak var makeLabel: UILabel!
     @IBOutlet weak var makeResultLabel: UILabel!
@@ -29,6 +31,7 @@ class SearchResultsController: UITableViewController {
         super.viewDidLoad()
 
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SearchResultsController.dismissSearchResultsController))
+        configureView()
         
     }
     
@@ -36,6 +39,20 @@ class SearchResultsController: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
+    func configureView() {
+        guard let stub = stub else { return }
+        
+        resultsName.text = stub.character.characterName
+        makeLabel.text = "Born"
+        makeResultLabel.text = stub.character.dateOfBirth
+        costLabel.text = "Home"
+        costResultLabel.text = stub.character.homePlanet
+        lengthLabel.text = "Height"
+        lengthResultLabel.text = "\(stub.character.height)m"
+        classLabel.text = "Eyes"
+        classResultLabel.text = stub.character.eyeColor
+        crewLabel.text = "Hair"
+        crewResultsLabel.text = stub.character.hairColor
+    }
 
 }

@@ -9,24 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
 
-    @IBAction func entitySelection(_ sender: UIBarButtonItem) {
-        switch sender.tag {
-        case 0:
-            print("characters")
-        case 1:
-            print("vehicles")
-        case 2:
-            print("starships")
-        default:
-            break
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "characterSegue" {
+            let characterData = Stub()
+            
+            guard let navigationController = segue.destination as? UINavigationController, let searchResultsController = navigationController.topViewController as? SearchResultsController else { return }
+            
+            searchResultsController.stub = characterData
         }
-        
     }
     
     
