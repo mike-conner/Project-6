@@ -28,7 +28,7 @@
                                                 <rect key="frame" x="3" y="0.0" width="100" height="100"/>
                                                 <state key="normal" image="icon-characters"/>
                                                 <connections>
-                                                    <action selector="entitySelection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hhn-5l-cag"/>
+                                                    <segue destination="i5y-5u-HML" kind="presentation" identifier="CharacterSegue" id="Sqz-p8-Lau"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Characters" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1d-xX-WeK">
@@ -56,7 +56,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 <state key="normal" image="icon-vehicles"/>
                                                 <connections>
-                                                    <action selector="entitySelection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3IZ-dd-7cn"/>
+                                                    <segue destination="i5y-5u-HML" kind="presentation" identifier="VehicleSegue" id="f0D-zA-Y8o"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vehicles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQh-IG-EJJ">
@@ -84,7 +84,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 <state key="normal" image="icon-starships"/>
                                                 <connections>
-                                                    <action selector="entitySelection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kV5-Mr-NpX"/>
+                                                    <segue destination="i5y-5u-HML" kind="presentation" identifier="StarshipSegue" id="hQD-6h-Vnc"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starships" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPw-ah-uoG">
@@ -348,4 +348,7 @@
         <image name="icon-vehicles" width="100" height="100"/>
         <image name="line-png-32" width="500" height="200"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="f0D-zA-Y8o"/>
+    </inferredMetricsTieBreakers>
 </document>
