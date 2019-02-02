@@ -9,23 +9,45 @@
 import UIKit
 
 class ViewController: UIViewController {
-        
+    
+    let client = SWAPIClient(configuration: .default)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "characterSegue" {
-            let characterData = Stub()
-            
-            guard let navigationController = segue.destination as? UINavigationController, let searchResultsController = navigationController.topViewController as? SearchResultsController else { return }
-            
-            searchResultsController.stub = characterData
+    
+    @IBAction func starWarsObjectSelection (_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            getListOfEntities(entity: .people)
+            performSegue(withIdentifier: "starWarSegue", sender: self)
+        case 1:
+            getListOfEntities(entity: .vehicles)
+            performSegue(withIdentifier: "starWarSegue", sender: self)
+        case 2:
+            getListOfEntities(entity: .starships)
+            performSegue(withIdentifier: "starWarSegue", sender: self)
+        default:
+            break
         }
     }
     
-    
-
+    func getListOfEntities(entity: EntityType) {
+        client.getEntityList(entityType: entity) { entity1, entity2, entity3, error in
+            if let entity = entity1 {
+                print(entity.results.count)
+                dump(entity)
+            }
+            if let entity = entity2 {
+                print(entity.results.count)
+                dump(entity)
+            }
+            if let entity = entity3 {
+                print(entity.results.count)
+                dump(entity)
+            }
+        }
+    }
 }
 

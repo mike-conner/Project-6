@@ -12,12 +12,14 @@
 		13E199C521FE37E6003D1777 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13E199C321FE37E6003D1777 /* Main.storyboard */; };
 		13E199C721FE37E6003D1777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13E199C621FE37E6003D1777 /* Assets.xcassets */; };
 		13E199CA21FE37E6003D1777 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13E199C821FE37E6003D1777 /* LaunchScreen.storyboard */; };
-		13E199D521FE3870003D1777 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199D421FE3870003D1777 /* Character.swift */; };
-		13E199D721FE387D003D1777 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199D621FE387D003D1777 /* Vehicle.swift */; };
-		13E199D921FE3885003D1777 /* Starship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199D821FE3885003D1777 /* Starship.swift */; };
-		13E199DB21FE3BFE003D1777 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199DA21FE3BFE003D1777 /* Stub.swift */; };
+		13E199D521FE3870003D1777 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199D421FE3870003D1777 /* People.swift */; };
 		13E199DD21FE51E0003D1777 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13E199DC21FE51E0003D1777 /* Default-568h@2x.png */; };
 		13E199DF21FE52FE003D1777 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199DE21FE52FE003D1777 /* SearchResultsController.swift */; };
+		13F38EDD2206215C0022F8DA /* SWAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F38EDC2206215C0022F8DA /* SWAPIError.swift */; };
+		13F38EDF220621C40022F8DA /* SWAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F38EDE220621C40022F8DA /* SWAPIClient.swift */; };
+		13F38EE1220649750022F8DA /* Vehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F38EE0220649750022F8DA /* Vehicles.swift */; };
+		13F38EE322064AD90022F8DA /* StarShips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F38EE222064AD90022F8DA /* StarShips.swift */; };
+		13F38EE522064D8D0022F8DA /* EntityTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F38EE422064D8D0022F8DA /* EntityTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,12 +30,14 @@
 		13E199C621FE37E6003D1777 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13E199C921FE37E6003D1777 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13E199CB21FE37E6003D1777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		13E199D421FE3870003D1777 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
-		13E199D621FE387D003D1777 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
-		13E199D821FE3885003D1777 /* Starship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Starship.swift; sourceTree = "<group>"; };
-		13E199DA21FE3BFE003D1777 /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
+		13E199D421FE3870003D1777 /* People.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
 		13E199DC21FE51E0003D1777 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		13E199DE21FE52FE003D1777 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
+		13F38EDC2206215C0022F8DA /* SWAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAPIError.swift; sourceTree = "<group>"; };
+		13F38EDE220621C40022F8DA /* SWAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAPIClient.swift; sourceTree = "<group>"; };
+		13F38EE0220649750022F8DA /* Vehicles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicles.swift; sourceTree = "<group>"; };
+		13F38EE222064AD90022F8DA /* StarShips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarShips.swift; sourceTree = "<group>"; };
+		13F38EE422064D8D0022F8DA /* EntityTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		131803B92203B2A800B044C0 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		132C713D21FFE39100B568E4 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				13F38EDC2206215C0022F8DA /* SWAPIError.swift */,
+				13F38EDE220621C40022F8DA /* SWAPIClient.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		13E199B321FE37E6003D1777 = {
 			isa = PBXGroup;
 			children = (
@@ -67,9 +87,11 @@
 		13E199BE21FE37E6003D1777 /* Project-6 */ = {
 			isa = PBXGroup;
 			children = (
+				13E199D121FE3824003D1777 /* Models */,
+				132C713D21FFE39100B568E4 /* Networking */,
 				13E199D321FE3847003D1777 /* Controllers */,
 				13E199D221FE3831003D1777 /* Views */,
-				13E199D121FE3824003D1777 /* Models */,
+				131803B92203B2A800B044C0 /* View Models */,
 				13E199BF21FE37E6003D1777 /* AppDelegate.swift */,
 				13E199C621FE37E6003D1777 /* Assets.xcassets */,
 				13E199C821FE37E6003D1777 /* LaunchScreen.storyboard */,
@@ -81,10 +103,10 @@
 		13E199D121FE3824003D1777 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				13E199D421FE3870003D1777 /* Character.swift */,
-				13E199D621FE387D003D1777 /* Vehicle.swift */,
-				13E199D821FE3885003D1777 /* Starship.swift */,
-				13E199DA21FE3BFE003D1777 /* Stub.swift */,
+				13F38EE422064D8D0022F8DA /* EntityTypes.swift */,
+				13E199D421FE3870003D1777 /* People.swift */,
+				13F38EE0220649750022F8DA /* Vehicles.swift */,
+				13F38EE222064AD90022F8DA /* StarShips.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,13 +200,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13E199D721FE387D003D1777 /* Vehicle.swift in Sources */,
-				13E199DB21FE3BFE003D1777 /* Stub.swift in Sources */,
-				13E199D921FE3885003D1777 /* Starship.swift in Sources */,
 				13E199DF21FE52FE003D1777 /* SearchResultsController.swift in Sources */,
-				13E199D521FE3870003D1777 /* Character.swift in Sources */,
+				13F38EDD2206215C0022F8DA /* SWAPIError.swift in Sources */,
+				13E199D521FE3870003D1777 /* People.swift in Sources */,
+				13F38EE322064AD90022F8DA /* StarShips.swift in Sources */,
+				13F38EE522064D8D0022F8DA /* EntityTypes.swift in Sources */,
 				13E199C221FE37E6003D1777 /* ViewController.swift in Sources */,
 				13E199C021FE37E6003D1777 /* AppDelegate.swift in Sources */,
+				13F38EE1220649750022F8DA /* Vehicles.swift in Sources */,
+				13F38EDF220621C40022F8DA /* SWAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

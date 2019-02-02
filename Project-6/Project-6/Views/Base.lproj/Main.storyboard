@@ -28,7 +28,7 @@
                                                 <rect key="frame" x="3" y="0.0" width="100" height="100"/>
                                                 <state key="normal" image="icon-characters"/>
                                                 <connections>
-                                                    <segue destination="i5y-5u-HML" kind="presentation" identifier="characterSegue" id="Sqz-p8-Lau"/>
+                                                    <action selector="starWarsObjectSelection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s4W-0h-irO"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Characters" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1d-xX-WeK">
@@ -56,7 +56,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 <state key="normal" image="icon-vehicles"/>
                                                 <connections>
-                                                    <segue destination="i5y-5u-HML" kind="presentation" identifier="vehicleSegue" id="f0D-zA-Y8o"/>
+                                                    <action selector="starWarsObjectSelection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kha-g1-QNB"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vehicles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQh-IG-EJJ">
@@ -84,7 +84,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 <state key="normal" image="icon-starships"/>
                                                 <connections>
-                                                    <segue destination="i5y-5u-HML" kind="presentation" identifier="starshipSegue" id="hQD-6h-Vnc"/>
+                                                    <action selector="starWarsObjectSelection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ele-yK-Wve"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starships" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPw-ah-uoG">
@@ -109,6 +109,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <segue destination="i5y-5u-HML" kind="presentation" identifier="starWarSegue" id="JyB-8N-c15"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -387,8 +390,5 @@
         <image name="icon-vehicles" width="100" height="100"/>
         <image name="line-png-32" width="500" height="200"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="f0D-zA-Y8o"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
