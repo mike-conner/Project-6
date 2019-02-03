@@ -131,6 +131,20 @@
                         <color key="sectionIndexColor" red="0.48034942150115967" green="0.80607908964157104" blue="0.98299652338027954" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.10831908136606216" green="0.12357286363840103" blue="0.14342653751373291" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.10831908136606216" green="0.12357286363840103" blue="0.14342653751373291" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="8ZL-KL-ld4">
+                            <rect key="frame" x="0.0" y="353" width="375" height="252"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DYf-Yc-dNU">
+                                    <rect key="frame" x="27.5" y="18" width="320" height="216"/>
+                                </pickerView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="DYf-Yc-dNU" firstAttribute="centerY" secondItem="8ZL-KL-ld4" secondAttribute="centerY" id="R7o-aq-j48"/>
+                                <constraint firstItem="DYf-Yc-dNU" firstAttribute="centerX" secondItem="8ZL-KL-ld4" secondAttribute="centerX" id="qMi-vE-zFx"/>
+                            </constraints>
+                        </view>
                         <sections>
                             <tableViewSection id="1km-mS-pXR">
                                 <cells>
@@ -341,6 +355,7 @@
                         <outlet property="labelThree" destination="QRP-S0-Xw5" id="j5I-Fp-YtR"/>
                         <outlet property="labelTwo" destination="t9r-CE-Qzc" id="dLM-t8-cYX"/>
                         <outlet property="name" destination="KQK-bm-hHc" id="DrC-ki-2ba"/>
+                        <outlet property="pickerView" destination="DYf-Yc-dNU" id="PRi-y1-nT7"/>
                         <outlet property="resultsFive" destination="VNv-2q-XMh" id="Fpq-LS-Bei"/>
                         <outlet property="resultsFour" destination="Juu-qN-Yoe" id="3Bi-Cq-nUe"/>
                         <outlet property="resultsOne" destination="EX4-yG-M95" id="nb3-Z2-x2g"/>

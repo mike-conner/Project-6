@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchResultsController: UITableViewController {
+class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var entity: EntityType?
     var peopleCollectionList: People?
@@ -29,14 +29,17 @@ class SearchResultsController: UITableViewController {
     @IBOutlet weak var labelFive: UILabel!
     @IBOutlet weak var resultsFive: UILabel!
     
+    @IBOutlet weak var pickerView: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SearchResultsController.dismissSearchResultsController))
+        pickerView.delegate = self
+        pickerView.dataSource = self
 
         if let entity = entity {
             setUpLabelsBasedOnEntity(entity: entity)
-            setUpResultsBasedOnEntity(entity: entity)
+            setUpResultsBasedOnEntity(entity: entity, index: 0)
         }
     }
     
@@ -63,31 +66,62 @@ class SearchResultsController: UITableViewController {
         }
     }
     
-    func setUpResultsBasedOnEntity(entity: EntityType) {
+    func setUpResultsBasedOnEntity(entity: EntityType, index: Int) {
         switch entity {
         case .people:
-            name.text = peopleCollectionList?.results[0].name
-            resultsOne.text = peopleCollectionList?.results[0].birthYear
-            resultsTwo.text = peopleCollectionList?.results[0].homeworld
-            resultsThree.text = peopleCollectionList?.results[0].height
-            resultsFour.text = peopleCollectionList?.results[0].eyeColor
-            resultsFive.text = peopleCollectionList?.results[0].hairColor
+            title = "Characters"
+            name.text = peopleCollectionList?.results[index].name
+            resultsOne.text = peopleCollectionList?.results[index].birthYear
+            resultsTwo.text = peopleCollectionList?.results[index].homeworld
+            resultsThree.text = peopleCollectionList?.results[index].height
+            resultsFour.text = peopleCollectionList?.results[index].eyeColor
+            resultsFive.text = peopleCollectionList?.results[index].hairColor
         case .vehicles:
-            name.text = vehicleCollectionList?.results[0].name
-            resultsOne.text = vehicleCollectionList?.results[0].manufacturer
-            resultsTwo.text = vehicleCollectionList?.results[0].costInCredits
-            resultsThree.text = vehicleCollectionList?.results[0].length
-            resultsFour.text = vehicleCollectionList?.results[0].vehicleClass
-            resultsFive.text = vehicleCollectionList?.results[0].crew
+            title = "Vehicles"
+            name.text = vehicleCollectionList?.results[index].name
+            resultsOne.text = vehicleCollectionList?.results[index].manufacturer
+            resultsTwo.text = vehicleCollectionList?.results[index].costInCredits
+            resultsThree.text = vehicleCollectionList?.results[index].length
+            resultsFour.text = vehicleCollectionList?.results[index].vehicleClass
+            resultsFive.text = vehicleCollectionList?.results[index].crew
         case .starships:
-            name.text = starshipCollectionList?.results[0].name
-            resultsOne.text = starshipCollectionList?.results[0].manufacturer
-            resultsTwo.text = starshipCollectionList?.results[0].costInCredits
-            resultsThree.text = starshipCollectionList?.results[0].length
-            resultsFour.text = starshipCollectionList?.results[0].starshipClass
-            resultsFive.text = starshipCollectionList?.results[0].crew
+            title = "Starships"
+            name.text = starshipCollectionList?.results[index].name
+            resultsOne.text = starshipCollectionList?.results[index].manufacturer
+            resultsTwo.text = starshipCollectionList?.results[index].costInCredits
+            resultsThree.text = starshipCollectionList?.results[index].length
+            resultsFour.text = starshipCollectionList?.results[index].starshipClass
+            resultsFive.text = starshipCollectionList?.results[index].crew
         default:
             break
+        }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 10
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if entity?.rawValue == "people" {
+            return peopleCollectionList?.results[row].name
+        } else if entity?.rawValue == "vehicles" {
+            return vehicleCollectionList?.results[row].name
+        } else {
+            return starshipCollectionList?.results[row].name
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if entity?.rawValue == "people" {
+            setUpResultsBasedOnEntity(entity: .people, index: row)
+        } else if entity?.rawValue == "vehicles" {
+            setUpResultsBasedOnEntity(entity: .vehicles, index: row)
+        } else {
+            setUpResultsBasedOnEntity(entity: .starships, index: row)
         }
     }
 }
