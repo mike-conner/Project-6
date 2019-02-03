@@ -17,7 +17,7 @@ class SWAPIClient {
         self.session = URLSession(configuration: .default)
     }
     
-    func getEntityList(entityType: EntityType, completionHandler completion: @escaping (People?, Vehicles?, StarShips?, Error?) -> Void) {
+    func getEntityList(entityType: EntityType, completionHandler completion: @escaping (People?, Vehicles?, Starships?, Error?) -> Void) {
         
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
@@ -47,7 +47,7 @@ class SWAPIClient {
                                 let entities = try self.decoder.decode(Vehicles.self, from: data)
                                 completion(nil, entities, nil, nil)
                             case .starships:
-                                let entities = try self.decoder.decode(StarShips.self, from: data)
+                                let entities = try self.decoder.decode(Starships.self, from: data)
                                 completion(nil, nil, entities, nil)
                             }
                         } catch let error {

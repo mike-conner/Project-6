@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let client = SWAPIClient(configuration: .default)
+    var entityType: EntityType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,33 +20,20 @@ class ViewController: UIViewController {
     @IBAction func starWarsObjectSelection (_ sender: UIButton) {
         switch sender.tag {
         case 0:
-            getListOfEntities(entity: .people)
-            performSegue(withIdentifier: "starWarSegue", sender: self)
+            entityType = EntityType.people
         case 1:
-            getListOfEntities(entity: .vehicles)
-            performSegue(withIdentifier: "starWarSegue", sender: self)
+            entityType = EntityType.vehicles
         case 2:
-            getListOfEntities(entity: .starships)
-            performSegue(withIdentifier: "starWarSegue", sender: self)
+            entityType = EntityType.starships
         default:
             break
         }
+        performSegue(withIdentifier: "starWarSegue", sender: self)
     }
     
-    func getListOfEntities(entity: EntityType) {
-        client.getEntityList(entityType: entity) { entity1, entity2, entity3, error in
-            if let entity = entity1 {
-                print(entity.results.count)
-                dump(entity)
-            }
-            if let entity = entity2 {
-                print(entity.results.count)
-                dump(entity)
-            }
-            if let entity = entity3 {
-                print(entity.results.count)
-                dump(entity)
-            }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nav = segue.destination as? UINavigationController, let destVC = nav.topViewController as? SearchResultsController {
+            destVC.entityType = entityType
         }
     }
 }

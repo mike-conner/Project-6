@@ -18,7 +18,7 @@
 		13F38EDD2206215C0022F8DA /* SWAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F38EDC2206215C0022F8DA /* SWAPIError.swift */; };
 		13F38EDF220621C40022F8DA /* SWAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F38EDE220621C40022F8DA /* SWAPIClient.swift */; };
 		13F38EE1220649750022F8DA /* Vehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F38EE0220649750022F8DA /* Vehicles.swift */; };
-		13F38EE322064AD90022F8DA /* StarShips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F38EE222064AD90022F8DA /* StarShips.swift */; };
+		13F38EE322064AD90022F8DA /* Starships.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F38EE222064AD90022F8DA /* Starships.swift */; };
 		13F38EE522064D8D0022F8DA /* EntityTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F38EE422064D8D0022F8DA /* EntityTypes.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +36,7 @@
 		13F38EDC2206215C0022F8DA /* SWAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAPIError.swift; sourceTree = "<group>"; };
 		13F38EDE220621C40022F8DA /* SWAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAPIClient.swift; sourceTree = "<group>"; };
 		13F38EE0220649750022F8DA /* Vehicles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicles.swift; sourceTree = "<group>"; };
-		13F38EE222064AD90022F8DA /* StarShips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarShips.swift; sourceTree = "<group>"; };
+		13F38EE222064AD90022F8DA /* Starships.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Starships.swift; sourceTree = "<group>"; };
 		13F38EE422064D8D0022F8DA /* EntityTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,7 +106,7 @@
 				13F38EE422064D8D0022F8DA /* EntityTypes.swift */,
 				13E199D421FE3870003D1777 /* People.swift */,
 				13F38EE0220649750022F8DA /* Vehicles.swift */,
-				13F38EE222064AD90022F8DA /* StarShips.swift */,
+				13F38EE222064AD90022F8DA /* Starships.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,7 +203,7 @@
 				13E199DF21FE52FE003D1777 /* SearchResultsController.swift in Sources */,
 				13F38EDD2206215C0022F8DA /* SWAPIError.swift in Sources */,
 				13E199D521FE3870003D1777 /* People.swift in Sources */,
-				13F38EE322064AD90022F8DA /* StarShips.swift in Sources */,
+				13F38EE322064AD90022F8DA /* Starships.swift in Sources */,
 				13F38EE522064D8D0022F8DA /* EntityTypes.swift in Sources */,
 				13E199C221FE37E6003D1777 /* ViewController.swift in Sources */,
 				13E199C021FE37E6003D1777 /* AppDelegate.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StarShips: Codable {
+struct Starships: Codable {
     let results: [Starship]
 }
 
