@@ -12,7 +12,7 @@ struct People: Codable {
     let results: [Person]
 }
 
-struct Person: Codable {
+struct Person: Codable, Equatable {
     let name: String
     let birthYear: String
     let homeworld: String
@@ -21,7 +21,11 @@ struct Person: Codable {
     let hairColor: String
 }
 
-
+extension Person {
+    static func == (lhs: Person , rhs: Planet) -> Bool {
+        return lhs.homeworld == rhs.url
+    }
+}
 
 
 

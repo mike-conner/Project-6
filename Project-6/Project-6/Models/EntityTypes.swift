@@ -12,4 +12,5 @@ enum EntityType: String {
     case people
     case vehicles
     case starships
+    case planets
 }

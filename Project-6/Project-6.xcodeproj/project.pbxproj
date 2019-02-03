@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13A2BF6722073691007F0C41 /* Planets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A2BF6622073691007F0C41 /* Planets.swift */; };
+		13A2BF6A22074312007F0C41 /* SearchResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A2BF6922074312007F0C41 /* SearchResultsViewModel.swift */; };
 		13E199C021FE37E6003D1777 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199BF21FE37E6003D1777 /* AppDelegate.swift */; };
 		13E199C221FE37E6003D1777 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E199C121FE37E6003D1777 /* ViewController.swift */; };
 		13E199C521FE37E6003D1777 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13E199C321FE37E6003D1777 /* Main.storyboard */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13A2BF6622073691007F0C41 /* Planets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planets.swift; sourceTree = "<group>"; };
+		13A2BF6922074312007F0C41 /* SearchResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewModel.swift; sourceTree = "<group>"; };
 		13E199BC21FE37E6003D1777 /* Project-6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-6.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13E199BF21FE37E6003D1777 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13E199C121FE37E6003D1777 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 		131803B92203B2A800B044C0 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				13A2BF6922074312007F0C41 /* SearchResultsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -107,6 +112,7 @@
 				13E199D421FE3870003D1777 /* People.swift */,
 				13F38EE0220649750022F8DA /* Vehicles.swift */,
 				13F38EE222064AD90022F8DA /* Starships.swift */,
+				13A2BF6622073691007F0C41 /* Planets.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,6 +207,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				13E199DF21FE52FE003D1777 /* SearchResultsController.swift in Sources */,
+				13A2BF6A22074312007F0C41 /* SearchResultsViewModel.swift in Sources */,
+				13A2BF6722073691007F0C41 /* Planets.swift in Sources */,
 				13F38EDD2206215C0022F8DA /* SWAPIError.swift in Sources */,
 				13E199D521FE3870003D1777 /* People.swift in Sources */,
 				13F38EE322064AD90022F8DA /* Starships.swift in Sources */,

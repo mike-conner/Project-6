@@ -10,68 +10,84 @@ import UIKit
 
 class SearchResultsController: UITableViewController {
     
-    var entityType: EntityType?
-    let client = SWAPIClient(configuration: .default)
-    var peopleCollection: People?
-    var vehicleCollection: Vehicles?
-    var starshipCollecion: Starships?
+    var entity: EntityType?
+    var peopleCollectionList: People?
+    var vehicleCollectionList: Vehicles?
+    var starshipCollectionList: Starships?
+    var planetCollectionList: Planets?
 
     
-    @IBOutlet weak var resultsName: UILabel!
-    @IBOutlet weak var makeLabel: UILabel!
-    @IBOutlet weak var makeResultLabel: UILabel!
-    @IBOutlet weak var costLabel: UILabel!
-    @IBOutlet weak var costResultLabel: UILabel!
-    @IBOutlet weak var lengthLabel: UILabel!
-    @IBOutlet weak var lengthResultLabel: UILabel!
-    @IBOutlet weak var classLabel: UILabel!
-    @IBOutlet weak var classResultLabel: UILabel!
-    @IBOutlet weak var crewLabel: UILabel!
-    @IBOutlet weak var crewResultsLabel: UILabel!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var labelOne: UILabel!
+    @IBOutlet weak var resultsOne: UILabel!
+    @IBOutlet weak var labelTwo: UILabel!
+    @IBOutlet weak var resultsTwo: UILabel!
+    @IBOutlet weak var labelThree: UILabel!
+    @IBOutlet weak var resultsThree: UILabel!
+    @IBOutlet weak var labelFour: UILabel!
+    @IBOutlet weak var resultsFour: UILabel!
+    @IBOutlet weak var labelFive: UILabel!
+    @IBOutlet weak var resultsFive: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SearchResultsController.dismissSearchResultsController))
-    
-        if let type = entityType {
-            getListOfEntities(entity: type)
+
+        if let entity = entity {
+            setUpLabelsBasedOnEntity(entity: entity)
+            setUpResultsBasedOnEntity(entity: entity)
         }
-        configureView()
     }
     
     @objc func dismissSearchResultsController() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func configureView() {
-        if peopleCollection?.results.count ?? 0 > 0 {
-            resultsName.text = peopleCollection?.results[0].name
-            makeResultLabel.text = peopleCollection?.results[0].birthYear
-            costResultLabel.text = peopleCollection?.results[0].homeworld
-            lengthResultLabel.text = peopleCollection?.results[0].height
-            classResultLabel.text = peopleCollection?.results[0].eyeColor
-            crewResultsLabel.text = peopleCollection?.results[0].hairColor
+    func setUpLabelsBasedOnEntity(entity: EntityType) {
+        switch entity {
+        case .people:
+            labelOne.text = "Born"
+            labelTwo.text = "Home"
+            labelThree.text = "Height"
+            labelFour.text = "Eyes"
+            labelFive.text = "Hair"
+        case .vehicles, .starships:
+            labelOne.text = "Make"
+            labelTwo.text = "Cost"
+            labelThree.text = "Length"
+            labelFour.text = "Class"
+            labelFive.text = "Crew"
+        default:
+            break
         }
     }
     
-    func getListOfEntities(entity: EntityType) {
-        DispatchQueue.main.async {
-            self.client.getEntityList(entityType: entity) { people, vehicles, starships, error in
-                if let people = people {
-                    self.peopleCollection = people
-                    self.configureView()
-                }
-                if let vehicles = vehicles {
-                    self.vehicleCollection = vehicles
-                    self.configureView()
-                }
-                if let starships = starships {
-                    self.starshipCollecion = starships
-                    self.configureView()
-                }
-            }
+    func setUpResultsBasedOnEntity(entity: EntityType) {
+        switch entity {
+        case .people:
+            name.text = peopleCollectionList?.results[0].name
+            resultsOne.text = peopleCollectionList?.results[0].birthYear
+            resultsTwo.text = peopleCollectionList?.results[0].homeworld
+            resultsThree.text = peopleCollectionList?.results[0].height
+            resultsFour.text = peopleCollectionList?.results[0].eyeColor
+            resultsFive.text = peopleCollectionList?.results[0].hairColor
+        case .vehicles:
+            name.text = vehicleCollectionList?.results[0].name
+            resultsOne.text = vehicleCollectionList?.results[0].manufacturer
+            resultsTwo.text = vehicleCollectionList?.results[0].costInCredits
+            resultsThree.text = vehicleCollectionList?.results[0].length
+            resultsFour.text = vehicleCollectionList?.results[0].vehicleClass
+            resultsFive.text = vehicleCollectionList?.results[0].crew
+        case .starships:
+            name.text = starshipCollectionList?.results[0].name
+            resultsOne.text = starshipCollectionList?.results[0].manufacturer
+            resultsTwo.text = starshipCollectionList?.results[0].costInCredits
+            resultsThree.text = starshipCollectionList?.results[0].length
+            resultsFour.text = starshipCollectionList?.results[0].starshipClass
+            resultsFive.text = starshipCollectionList?.results[0].crew
+        default:
+            break
         }
     }
-
 }
