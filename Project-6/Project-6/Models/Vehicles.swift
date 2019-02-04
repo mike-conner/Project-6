@@ -10,6 +10,7 @@ import Foundation
 
 struct Vehicles: Codable {
     let results: [Vehicle]
+    let next: String?
 }
 
 struct Vehicle: Codable {

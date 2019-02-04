@@ -10,6 +10,7 @@ import Foundation
 
 struct Starships: Codable {
     let results: [Starship]
+    let next: String?
 }
 
 struct Starship: Codable {

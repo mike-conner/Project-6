@@ -10,6 +10,7 @@ import Foundation
 
 struct Planets: Codable {
     let results: [Planet]
+    let next: String?
 }
 
 struct Planet: Codable, Equatable {
@@ -20,4 +21,6 @@ struct Planet: Codable, Equatable {
 extension Planet {
     static func == (lhs: Person, rhs: Planet) -> Bool {
         return lhs.homeworld == rhs.url
-    }}
+    }
+}
+

@@ -10,6 +10,7 @@ import Foundation
 
 struct People: Codable {
     let results: [Person]
+    let next: String?
 }
 
 struct Person: Codable, Equatable {
@@ -27,7 +28,19 @@ extension Person {
     }
 }
 
-
+extension Person {
+    func getPlanetName(personUrl: String, planets: Planets?) -> String? {
+        var name: String?
+        var index = 0
+        while index < planets?.results.count ?? 0 {
+            if planets?.results[index].url == personUrl {
+                name = planets?.results[index].name
+                return name
+            } else { index += 1 }
+        }
+        return nil
+    }
+}
 
 
 

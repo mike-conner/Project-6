@@ -72,7 +72,9 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             title = "Characters"
             name.text = peopleCollectionList?.results[index].name
             resultsOne.text = peopleCollectionList?.results[index].birthYear
-            resultsTwo.text = peopleCollectionList?.results[index].homeworld
+            if let homeworldName = peopleCollectionList?.results[index].getPlanetName(personUrl: peopleCollectionList?.results[index].homeworld ?? "", planets: planetCollectionList) {
+                resultsTwo.text = homeworldName
+            }
             resultsThree.text = peopleCollectionList?.results[index].height
             resultsFour.text = peopleCollectionList?.results[index].eyeColor
             resultsFive.text = peopleCollectionList?.results[index].hairColor
