@@ -9,8 +9,8 @@
 import Foundation
 
 struct Vehicles: Codable {
-    let results: [Vehicle]
-    let next: String?
+    var results: [Vehicle]
+    var next: String?
 }
 
 struct Vehicle: Codable {

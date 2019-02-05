@@ -9,8 +9,8 @@
 import Foundation
 
 struct Planets: Codable {
-    let results: [Planet]
-    let next: String?
+    var results: [Planet]
+    var next: String?
 }
 
 struct Planet: Codable, Equatable {

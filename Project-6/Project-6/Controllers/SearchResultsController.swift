@@ -104,7 +104,19 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
+        switch self.entity?.rawValue {
+        case "people":
+            guard let numberOfRows = peopleCollectionList?.results.count else { return 0 }
+            return numberOfRows
+        case "vehicles":
+            guard let numberOfRows = vehicleCollectionList?.results.count else { return 0 }
+            return numberOfRows
+        case "starships":
+            guard let numberOfRows = starshipCollectionList?.results.count else { return 0 }
+            return numberOfRows
+        default:
+        return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

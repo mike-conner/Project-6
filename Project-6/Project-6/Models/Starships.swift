@@ -9,8 +9,8 @@
 import Foundation
 
 struct Starships: Codable {
-    let results: [Starship]
-    let next: String?
+    var results: [Starship]
+    var next: String?
 }
 
 struct Starship: Codable {

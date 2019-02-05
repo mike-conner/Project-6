@@ -17,13 +17,14 @@ class SWAPIClient {
         self.session = URLSession(configuration: .default)
     }
     
-    func getEntityList(entityType: EntityType, completionHandler completion: @escaping (People?, Vehicles?, Starships?, Planets?, Error?) -> Void) {
+    func getEntityList(entityType: EntityType, page: Int, completionHandler completion: @escaping (People?, Vehicles?, Starships?, Planets?, Error?) -> Void) {
         
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        let base = URL(string: "https://swapi.co/api/")
+//        let base = URL(string: "https://swapi.co/api/")
         
-        guard let url = URL(string: entityType.rawValue, relativeTo: base) else {
+        guard let url = URL(string: "https://swapi.co/api/\(entityType.rawValue)/?page=\(page)") else {
+//        guard let url = URL(string: entityType.rawValue, relativeTo: base) else {
             completion(nil, nil, nil, nil, SWAPIError.invalidUrl)
             return
         }

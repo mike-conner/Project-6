@@ -9,8 +9,8 @@
 import Foundation
 
 struct People: Codable {
-    let results: [Person]
-    let next: String?
+    var results: [Person]
+    var next: String?
 }
 
 struct Person: Codable, Equatable {
@@ -41,9 +41,6 @@ extension Person {
         return nil
     }
 }
-
-
-
 
 
 
