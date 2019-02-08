@@ -71,13 +71,35 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
         case .people:
             title = "Characters"
             name.text = peopleCollectionList?.results[index].name
-            resultsOne.text = peopleCollectionList?.results[index].birthYear
-            if let homeworldName = peopleCollectionList?.results[index].getPlanetName(personUrl: peopleCollectionList?.results[index].homeworld ?? "", planets: planetCollectionList) {
-                resultsTwo.text = homeworldName
+            if peopleCollectionList?.results[index].birthYear == "unknown" {
+                resultsOne.text = "Birth year unknown"
+            } else {
+                resultsOne.text = peopleCollectionList?.results[index].birthYear
             }
-            resultsThree.text = peopleCollectionList?.results[index].height
-            resultsFour.text = peopleCollectionList?.results[index].eyeColor
-            resultsFive.text = peopleCollectionList?.results[index].hairColor
+            if let homeworldName = peopleCollectionList?.results[index].getPlanetName(personUrl: peopleCollectionList?.results[index].homeworld ?? "", planets: planetCollectionList) {
+                if peopleCollectionList?.results[index].homeworld == "unknown" {
+                    resultsTwo.text = "Homeworld unknown"
+                } else {
+                    resultsTwo.text = homeworldName
+                }
+            }
+            if let height = peopleCollectionList?.results[index].height.toDouble() {
+                var displayedHeight = height
+                displayedHeight = height/100
+                resultsThree.text = "\(displayedHeight)m"
+            }
+            if peopleCollectionList?.results[index].eyeColor == "unknown" {
+                resultsFour.text = "Eye color unknown"
+            } else {
+                resultsFour.text = peopleCollectionList?.results[index].eyeColor.capitalized
+            }
+            if peopleCollectionList?.results[index].hairColor == "n/a" || peopleCollectionList?.results[index].hairColor == "none" {
+                resultsFive.text = "Character has no hair"
+            } else if peopleCollectionList?.results[index].hairColor == "unknown" {
+                resultsFive.text = "Hair color unknown"
+            } else {
+                resultsFive.text = peopleCollectionList?.results[index].hairColor.capitalized
+            }
         case .vehicles:
             title = "Vehicles"
             name.text = vehicleCollectionList?.results[index].name
