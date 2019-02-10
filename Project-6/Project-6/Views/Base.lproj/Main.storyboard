@@ -136,15 +136,13 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DYf-Yc-dNU">
-                                    <rect key="frame" x="20" y="61" width="320" height="216"/>
+                                    <rect key="frame" x="27.5" y="18" width="320" height="216"/>
                                 </pickerView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="DYf-Yc-dNU" firstAttribute="centerY" secondItem="8ZL-KL-ld4" secondAttribute="centerY" constant="43" id="I9A-iG-oop"/>
-                                <constraint firstItem="DYf-Yc-dNU" firstAttribute="centerY" secondItem="8ZL-KL-ld4" secondAttribute="centerY" constant="43" id="R7o-aq-j48"/>
-                                <constraint firstItem="DYf-Yc-dNU" firstAttribute="centerX" secondItem="8ZL-KL-ld4" secondAttribute="centerX" constant="-7.5" id="qMi-vE-zFx"/>
-                                <constraint firstItem="DYf-Yc-dNU" firstAttribute="centerX" secondItem="8ZL-KL-ld4" secondAttribute="centerX" constant="-7.5" id="rXv-OU-j2Y"/>
+                                <constraint firstItem="DYf-Yc-dNU" firstAttribute="centerY" secondItem="8ZL-KL-ld4" secondAttribute="centerY" id="9n9-4I-BUt"/>
+                                <constraint firstItem="DYf-Yc-dNU" firstAttribute="centerX" secondItem="8ZL-KL-ld4" secondAttribute="centerX" id="onI-jR-B4W"/>
                             </constraints>
                         </view>
                         <sections>
@@ -227,7 +225,7 @@
                                                     <color key="textColor" red="0.48820227379999998" green="0.82725411650000003" blue="0.99992531539999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekt-9a-6lY" userLabel="resultsTwo">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ekt-9a-6lY" userLabel="resultsTwo">
                                                     <rect key="frame" x="100" y="11.5" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.98949021100000001" green="0.99023836850000002" blue="0.98960608240000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -235,6 +233,9 @@
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sd9-Yh-uGe" userLabel="costConverterSwitch">
                                                     <rect key="frame" x="243" y="8" width="117" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="117" id="RHH-FZ-sdn"/>
+                                                    </constraints>
                                                     <segments>
                                                         <segment title="Credits"/>
                                                         <segment title="USD"/>
@@ -249,7 +250,7 @@
                                                 <constraint firstItem="ekt-9a-6lY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="t9r-CE-Qzc" secondAttribute="trailing" constant="8" symbolic="YES" id="GLM-Hr-Lk8"/>
                                                 <constraint firstItem="ekt-9a-6lY" firstAttribute="leading" secondItem="gFI-Fq-MQT" secondAttribute="leading" constant="100" id="Jc0-JV-fy5"/>
                                                 <constraint firstItem="ekt-9a-6lY" firstAttribute="centerY" secondItem="gFI-Fq-MQT" secondAttribute="centerY" id="MSg-QW-CjN"/>
-                                                <constraint firstItem="sd9-Yh-uGe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ekt-9a-6lY" secondAttribute="trailing" constant="50" id="Wg7-Cu-GPo"/>
+                                                <constraint firstItem="sd9-Yh-uGe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ekt-9a-6lY" secondAttribute="trailing" constant="20" id="Wg7-Cu-GPo"/>
                                                 <constraint firstItem="t9r-CE-Qzc" firstAttribute="centerY" secondItem="gFI-Fq-MQT" secondAttribute="centerY" id="XYb-L7-xQ3"/>
                                                 <constraint firstAttribute="trailing" secondItem="sd9-Yh-uGe" secondAttribute="trailing" constant="15" id="bVy-3J-BCB"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="ekt-9a-6lY" secondAttribute="trailing" constant="10" id="cLl-fU-6AX"/>
@@ -272,7 +273,7 @@
                                                     <color key="textColor" red="0.48820227379999998" green="0.82725411650000003" blue="0.99992531539999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txu-9f-DBA" userLabel="resultsThree">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="txu-9f-DBA" userLabel="resultsThree">
                                                     <rect key="frame" x="100" y="11.5" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.98949021100000001" green="0.99023836850000002" blue="0.98960608240000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -280,6 +281,9 @@
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dop-3T-ziC" userLabel="sizeConverterSwitch">
                                                     <rect key="frame" x="243" y="8" width="117" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="117" id="Axg-Mt-JQG"/>
+                                                    </constraints>
                                                     <segments>
                                                         <segment title="Metric"/>
                                                         <segment title="English"/>
@@ -294,7 +298,7 @@
                                                 <constraint firstItem="txu-9f-DBA" firstAttribute="centerY" secondItem="FP4-Hg-GNx" secondAttribute="centerY" id="OOw-Ql-E82"/>
                                                 <constraint firstItem="QRP-S0-Xw5" firstAttribute="centerY" secondItem="FP4-Hg-GNx" secondAttribute="centerY" id="QGu-7m-dEh"/>
                                                 <constraint firstItem="dop-3T-ziC" firstAttribute="centerY" secondItem="FP4-Hg-GNx" secondAttribute="centerY" id="WdV-bD-yEH"/>
-                                                <constraint firstItem="dop-3T-ziC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="txu-9f-DBA" secondAttribute="trailing" constant="50" id="a9d-gy-mAW"/>
+                                                <constraint firstItem="dop-3T-ziC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="txu-9f-DBA" secondAttribute="trailing" constant="20" id="a9d-gy-mAW"/>
                                                 <constraint firstItem="txu-9f-DBA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QRP-S0-Xw5" secondAttribute="trailing" constant="8" symbolic="YES" id="ch5-dU-jTf"/>
                                                 <constraint firstItem="QRP-S0-Xw5" firstAttribute="leading" secondItem="FP4-Hg-GNx" secondAttribute="leadingMargin" constant="8" id="iRd-mA-QGb"/>
                                                 <constraint firstItem="txu-9f-DBA" firstAttribute="leading" secondItem="FP4-Hg-GNx" secondAttribute="leading" constant="100" id="mQz-UC-oUk"/>

@@ -15,7 +15,8 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     var vehicleCollectionList: Vehicles?
     var starshipCollectionList: Starships?
     var planetCollectionList: Planets?
-
+    
+    var selectedIndexOfCollectionLists: Int = 0
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var labelOne: UILabel!
@@ -51,9 +52,30 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     
     @IBAction func changeMonetaryType(_ sender: Any) {
         if costConverterSwitch.selectedSegmentIndex == 1 {
-            
+            showInputDialog(title: "Exchange rate",
+                            subtitle: "Please enter an exchange rate (positive numbers only).",
+                            actionTitle: "Submit",
+                            cancelTitle: "Cancel",
+                            inputPlaceholder: "Ex: \"1.5\"",
+                            inputKeyboardType: .numberPad)
+            { (input:String?) in
+                if input == "" {
+                    self.costConverterSwitch.selectedSegmentIndex = 0
+                } else {
+                    guard let conversionRate = input?.toDouble() else { return }
+                    guard let costInCredits = self.resultsTwo.text?.toDouble() else { return }
+                    let costInDollars = String(costInCredits * conversionRate)
+                    self.resultsTwo.text = costInDollars.toCurrencyFormat()
+                }
+            }
         } else {
-    
+            if entity == .vehicles {
+                guard let costInCredits = vehicleCollectionList?.results[selectedIndexOfCollectionLists].costInCredits else { return }
+                resultsTwo.text = costInCredits
+            } else {
+                guard let costInCredits = starshipCollectionList?.results[selectedIndexOfCollectionLists].costInCredits else { return }
+                resultsTwo.text = costInCredits
+            }
         }
     }
     
@@ -101,6 +123,7 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     }
     
     func setUpResultsBasedOnEntity(entity: EntityType, index: Int) {
+        selectedIndexOfCollectionLists = index
         switch entity {
         case .people:
             
@@ -217,6 +240,8 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        costConverterSwitch.selectedSegmentIndex = 0
+        sizeConverterSwitch.selectedSegmentIndex = 0
         if entity?.rawValue == "people" {
             setUpResultsBasedOnEntity(entity: .people, index: row)
         } else if entity?.rawValue == "vehicles" {
@@ -227,4 +252,32 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     }
     
     
+}
+
+extension UIViewController {
+    func showInputDialog(title:String? = nil,
+                         subtitle:String? = nil,
+                         actionTitle:String? = "Add",
+                         cancelTitle:String? = "Cancel",
+                         inputPlaceholder:String? = nil,
+                         inputKeyboardType:UIKeyboardType = UIKeyboardType.default,
+                         cancelHandler: ((UIAlertAction) -> Swift.Void)? = nil,
+                         actionHandler: ((_ text: String?) -> Void)? = nil) {
+        
+        let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
+        alert.addTextField { (textField:UITextField) in
+            textField.placeholder = inputPlaceholder
+            textField.keyboardType = inputKeyboardType
+        }
+        alert.addAction(UIAlertAction(title: actionTitle, style: .destructive, handler: { (action:UIAlertAction) in
+            guard let textField =  alert.textFields?.first else {
+                actionHandler?(nil)
+                return
+            }
+            actionHandler?(textField.text)
+        }))
+        alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: cancelHandler))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 }
