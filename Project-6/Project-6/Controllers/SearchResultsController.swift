@@ -28,6 +28,8 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var resultsFour: UILabel!
     @IBOutlet weak var labelFive: UILabel!
     @IBOutlet weak var resultsFive: UILabel!
+    @IBOutlet weak var costConverterSwitch: UISegmentedControl!
+    @IBOutlet weak var sizeConverterSwitch: UISegmentedControl!
     
     @IBOutlet weak var pickerView: UIPickerView!
     
@@ -47,6 +49,34 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func changeMonetaryType(_ sender: Any) {
+        if costConverterSwitch.selectedSegmentIndex == 1 {
+            
+        } else {
+    
+        }
+    }
+    
+    @IBAction func changeLengthType(_ sender: Any) {
+        if sizeConverterSwitch.selectedSegmentIndex == 1 {
+            if let currentHeight = resultsThree.text {
+                let decimals = Set("0123456789.")
+                guard var newHeight = String(currentHeight.filter{decimals.contains($0)}).toDouble() else { return }
+                newHeight = newHeight*3.2808
+                newHeight = Double(String(format: "%.2f", newHeight)) ?? 0
+                resultsThree.text = "\(newHeight)ft"
+            }
+        } else {
+            if let currentHeight = resultsThree.text {
+                let decimals = Set("0123456789.")
+                guard var newHeight = String(currentHeight.filter{decimals.contains($0)}).toDouble() else { return }
+                newHeight = newHeight/3.2808
+                newHeight = Double(String(format: "%.2f", newHeight)) ?? 0
+                resultsThree.text = "\(newHeight)m"
+            }
+        }
+    }
+    
     func setUpLabelsBasedOnEntity(entity: EntityType) {
         switch entity {
         case .people:
@@ -55,12 +85,16 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             labelThree.text = "Height"
             labelFour.text = "Eyes"
             labelFive.text = "Hair"
+            costConverterSwitch.isHidden = true
+            
         case .vehicles, .starships:
             labelOne.text = "Make"
             labelTwo.text = "Cost"
             labelThree.text = "Length"
             labelFour.text = "Class"
             labelFive.text = "Crew"
+            costConverterSwitch.isHidden = false
+            
         default:
             break
         }
@@ -69,6 +103,7 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     func setUpResultsBasedOnEntity(entity: EntityType, index: Int) {
         switch entity {
         case .people:
+            
             title = "Characters"
             name.text = peopleCollectionList?.results[index].name
             if peopleCollectionList?.results[index].birthYear == "unknown" {
@@ -77,13 +112,23 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                 resultsOne.text = peopleCollectionList?.results[index].birthYear
             }
             if let homeworldName = peopleCollectionList?.results[index].getPlanetName(personUrl: peopleCollectionList?.results[index].homeworld ?? "", planets: planetCollectionList) {
-                if peopleCollectionList?.results[index].homeworld == "unknown" {
+                if homeworldName == "unknown" {
                     resultsTwo.text = "Homeworld unknown"
                 } else {
                     resultsTwo.text = homeworldName
                 }
             }
             if let height = peopleCollectionList?.results[index].height.toDouble() {
+                switch sizeConverterSwitch.selectedSegmentIndex {
+                case 0:
+                    let displayedHeight = height/100
+                    resultsThree.text = "\(displayedHeight)m"
+                case 1:
+                    let displayHeight = height*3.2808
+                    resultsThree.text = "\(displayHeight)ft"
+                default:
+                    break
+                }
                 var displayedHeight = height
                 displayedHeight = height/100
                 resultsThree.text = "\(displayedHeight)m"
@@ -103,17 +148,37 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
         case .vehicles:
             title = "Vehicles"
             name.text = vehicleCollectionList?.results[index].name
-            resultsOne.text = vehicleCollectionList?.results[index].manufacturer
-            resultsTwo.text = vehicleCollectionList?.results[index].costInCredits
-            resultsThree.text = vehicleCollectionList?.results[index].length
-            resultsFour.text = vehicleCollectionList?.results[index].vehicleClass
+            if vehicleCollectionList?.results[index].manufacturer == "unknown" {
+                resultsOne.text = "Manufacturer unknown"
+            } else {
+                resultsOne.text = vehicleCollectionList?.results[index].manufacturer
+            }
+            if vehicleCollectionList?.results[index].costInCredits == "unknown" {
+                resultsTwo.text = "Cost unknown"
+            } else {
+                resultsTwo.text = vehicleCollectionList?.results[index].costInCredits
+            }
+            if let length = vehicleCollectionList?.results[index].length.toDouble() {
+                resultsThree.text = "\(length)m"
+            }
+            resultsFour.text = vehicleCollectionList?.results[index].vehicleClass.capitalized
             resultsFive.text = vehicleCollectionList?.results[index].crew
         case .starships:
             title = "Starships"
             name.text = starshipCollectionList?.results[index].name
-            resultsOne.text = starshipCollectionList?.results[index].manufacturer
-            resultsTwo.text = starshipCollectionList?.results[index].costInCredits
-            resultsThree.text = starshipCollectionList?.results[index].length
+            if starshipCollectionList?.results[index].manufacturer == "unknown" {
+                resultsOne.text = "Manufacturer unknown"
+            } else {
+                resultsOne.text = starshipCollectionList?.results[index].manufacturer
+            }
+            if starshipCollectionList?.results[index].costInCredits == "unknown" {
+                resultsTwo.text = "Cost unknown"
+            } else {
+                resultsTwo.text = starshipCollectionList?.results[index].costInCredits
+            }
+            if let length = starshipCollectionList?.results[index].length.toDouble() {
+                resultsThree.text = "\(length)m"
+            }
             resultsFour.text = starshipCollectionList?.results[index].starshipClass
             resultsFive.text = starshipCollectionList?.results[index].crew
         default:
@@ -160,4 +225,6 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             setUpResultsBasedOnEntity(entity: .starships, index: row)
         }
     }
+    
+    
 }
