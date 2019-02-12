@@ -55,13 +55,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		131803B92203B2A800B044C0 /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Models";
-			sourceTree = "<group>";
-		};
 		132C713D21FFE39100B568E4 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,7 +88,6 @@
 				132C713D21FFE39100B568E4 /* Networking */,
 				13E199D321FE3847003D1777 /* Controllers */,
 				13E199D221FE3831003D1777 /* Views */,
-				131803B92203B2A800B044C0 /* View Models */,
 				13E199BF21FE37E6003D1777 /* AppDelegate.swift */,
 				13E199C621FE37E6003D1777 /* Assets.xcassets */,
 				13E199C821FE37E6003D1777 /* LaunchScreen.storyboard */,
