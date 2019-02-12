@@ -132,17 +132,19 @@
                         <color key="sectionIndexBackgroundColor" red="0.10831908136606216" green="0.12357286363840103" blue="0.14342653751373291" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.10831908136606216" green="0.12357286363840103" blue="0.14342653751373291" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="8ZL-KL-ld4">
-                            <rect key="frame" x="0.0" y="353" width="375" height="252"/>
+                            <rect key="frame" x="0.0" y="433" width="375" height="252"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DYf-Yc-dNU">
-                                    <rect key="frame" x="27.5" y="18" width="320" height="216"/>
+                                    <rect key="frame" x="8" y="28" width="359" height="216"/>
                                 </pickerView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="DYf-Yc-dNU" firstAttribute="centerX" secondItem="8ZL-KL-ld4" secondAttribute="centerX" id="F4t-lR-Mes"/>
-                                <constraint firstItem="DYf-Yc-dNU" firstAttribute="centerY" secondItem="8ZL-KL-ld4" secondAttribute="centerY" id="J9B-9D-Fe9"/>
+                                <constraint firstItem="DYf-Yc-dNU" firstAttribute="top" secondItem="8ZL-KL-ld4" secondAttribute="topMargin" id="0Tc-Nb-BBh"/>
+                                <constraint firstItem="DYf-Yc-dNU" firstAttribute="leading" secondItem="8ZL-KL-ld4" secondAttribute="leadingMargin" id="aQH-Am-3t4"/>
+                                <constraint firstAttribute="bottomMargin" secondItem="DYf-Yc-dNU" secondAttribute="bottom" id="gsE-uR-5jd"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="DYf-Yc-dNU" secondAttribute="trailing" id="wAw-HF-Z6O"/>
                             </constraints>
                         </view>
                         <sections>
@@ -373,6 +375,64 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="1w4-a8-4fS">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="resultCell" id="PRB-pl-xzj">
+                                        <rect key="frame" x="0.0" y="371" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PRB-pl-xzj" id="YH7-ST-Ylx">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cUz-Y0-Fen">
+                                                    <rect key="frame" x="24" y="0.5" width="70" height="43"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smallest:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ok-mA-2Aq" userLabel="labelOne">
+                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="20.5"/>
+                                                            <color key="tintColor" red="0.48820227379999998" green="0.82725411650000003" blue="0.99992531539999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.48820227379999998" green="0.82725411650000003" blue="0.99992531539999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Largest:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyS-DQ-vg2" userLabel="labelOne">
+                                                            <rect key="frame" x="0.0" y="22.5" width="70" height="20.5"/>
+                                                            <color key="tintColor" red="0.48820227379999998" green="0.82725411650000003" blue="0.99992531539999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.48820227379999998" green="0.82725411650000003" blue="0.99992531539999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="m8n-bP-Tcz">
+                                                    <rect key="frame" x="100" y="0.5" width="42" height="43"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAd-dH-aei" userLabel="resultsOne">
+                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.98949021100000001" green="0.99023836850000002" blue="0.98960608240000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ta5-6w-w6Q" userLabel="resultsOne">
+                                                            <rect key="frame" x="0.0" y="22.5" width="42" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.98949021100000001" green="0.99023836850000002" blue="0.98960608240000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.1083190814" green="0.1235728636" blue="0.14342653750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="m8n-bP-Tcz" firstAttribute="leading" secondItem="YH7-ST-Ylx" secondAttribute="leading" constant="100" id="Anq-0D-BeA"/>
+                                                <constraint firstItem="cUz-Y0-Fen" firstAttribute="centerY" secondItem="YH7-ST-Ylx" secondAttribute="centerY" id="dqZ-zl-glq"/>
+                                                <constraint firstItem="cUz-Y0-Fen" firstAttribute="leading" secondItem="YH7-ST-Ylx" secondAttribute="leadingMargin" constant="8" id="jcE-aA-wk0"/>
+                                                <constraint firstItem="m8n-bP-Tcz" firstAttribute="centerY" secondItem="YH7-ST-Ylx" secondAttribute="centerY" id="qcT-gq-sd2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.1083190814" green="0.1235728636" blue="0.14342653750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="dnx-E4-sic" id="tiC-Ig-gQu"/>
@@ -387,6 +447,7 @@
                         <outlet property="labelOne" destination="M7p-4X-lAc" id="7Hz-EP-TBB"/>
                         <outlet property="labelThree" destination="QRP-S0-Xw5" id="j5I-Fp-YtR"/>
                         <outlet property="labelTwo" destination="t9r-CE-Qzc" id="dLM-t8-cYX"/>
+                        <outlet property="largestEntity" destination="ta5-6w-w6Q" id="Ck6-bx-bIK"/>
                         <outlet property="name" destination="KQK-bm-hHc" id="DrC-ki-2ba"/>
                         <outlet property="pickerView" destination="DYf-Yc-dNU" id="PRi-y1-nT7"/>
                         <outlet property="resultsFive" destination="VNv-2q-XMh" id="Fpq-LS-Bei"/>
@@ -395,6 +456,7 @@
                         <outlet property="resultsThree" destination="txu-9f-DBA" id="qGX-91-CqU"/>
                         <outlet property="resultsTwo" destination="ekt-9a-6lY" id="PsG-DM-Iby"/>
                         <outlet property="sizeConverterSwitch" destination="dop-3T-ziC" id="fIb-bK-Phr"/>
+                        <outlet property="smallestEntity" destination="GAd-dH-aei" id="VG0-XA-ipd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Omq-9X-ddI" userLabel="First Responder" sceneMemberID="firstResponder"/>

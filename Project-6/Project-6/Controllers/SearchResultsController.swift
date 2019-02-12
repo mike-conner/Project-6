@@ -29,6 +29,8 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var resultsFour: UILabel!
     @IBOutlet weak var labelFive: UILabel!
     @IBOutlet weak var resultsFive: UILabel!
+    @IBOutlet weak var smallestEntity: UILabel!
+    @IBOutlet weak var largestEntity: UILabel!
     @IBOutlet weak var costConverterSwitch: UISegmentedControl!
     @IBOutlet weak var sizeConverterSwitch: UISegmentedControl!
     
