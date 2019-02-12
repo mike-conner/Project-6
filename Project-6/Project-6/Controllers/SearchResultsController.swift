@@ -51,17 +51,28 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     }
     
     @IBAction func changeMonetaryType(_ sender: Any) {
+        if resultsTwo.text == "Cost unknown" {
+            let alert = UIAlertController(title: "Cost Unknown", message: "We have no value to convert", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+            self.present(alert, animated: true, completion: nil)
+            self.costConverterSwitch.selectedSegmentIndex = 0
+            return
+        }
         if costConverterSwitch.selectedSegmentIndex == 1 {
             showInputDialog(title: "Exchange rate",
                             subtitle: "Please enter an exchange rate (positive numbers only).",
                             actionTitle: "Submit",
-                            cancelTitle: "Cancel",
                             inputPlaceholder: "Ex: \"1.5\"",
-                            inputKeyboardType: .numberPad)
+                            inputKeyboardType: .decimalPad)
             { (input:String?) in
                 if input == "" {
                     self.costConverterSwitch.selectedSegmentIndex = 0
-                } else {
+                } else if input?.toDouble() ?? 0 <= 0 {
+                    let alert = UIAlertController(title: "Incorrect Value", message: "Value must be greater than 0", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                    self.costConverterSwitch.selectedSegmentIndex = 0
+                }  else {
                     guard let conversionRate = input?.toDouble() else { return }
                     guard let costInCredits = self.resultsTwo.text?.toDouble() else { return }
                     let costInDollars = String(costInCredits * conversionRate)
@@ -250,8 +261,6 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             setUpResultsBasedOnEntity(entity: .starships, index: row)
         }
     }
-    
-    
 }
 
 extension UIViewController {
@@ -260,8 +269,7 @@ extension UIViewController {
                          actionTitle:String? = "Add",
                          cancelTitle:String? = "Cancel",
                          inputPlaceholder:String? = nil,
-                         inputKeyboardType:UIKeyboardType = UIKeyboardType.default,
-                         cancelHandler: ((UIAlertAction) -> Swift.Void)? = nil,
+                         inputKeyboardType:UIKeyboardType = UIKeyboardType.decimalPad,
                          actionHandler: ((_ text: String?) -> Void)? = nil) {
         
         let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
@@ -276,8 +284,6 @@ extension UIViewController {
             }
             actionHandler?(textField.text)
         }))
-        alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: cancelHandler))
-        
         self.present(alert, animated: true, completion: nil)
     }
 }

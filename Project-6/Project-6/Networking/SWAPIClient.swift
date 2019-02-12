@@ -21,10 +21,7 @@ class SWAPIClient {
         
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
-//        let base = URL(string: "https://swapi.co/api/")
-        
         guard let url = URL(string: "https://swapi.co/api/\(entityType.rawValue)/?page=\(page)") else {
-//        guard let url = URL(string: entityType.rawValue, relativeTo: base) else {
             completion(nil, nil, nil, nil, SWAPIError.invalidUrl)
             return
         }
