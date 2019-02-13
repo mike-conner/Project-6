@@ -107,6 +107,29 @@ class ViewController: UIViewController {
                     self.getListOfEntities(entity: .planets, page: self.planetPageCounter)
                 }
             }
+            if let error = error {
+                let errorMessage: String?
+                switch error {
+                case SWAPIError.requestFailed:
+                    errorMessage = "Your request failed!"
+                case SWAPIError.responseUnsuccessful:
+//                    let statusCode = SWAPIError.responseUnsuccessful.statusCode
+                    errorMessage = "No response from server! Status code: )"
+                case SWAPIError.invalidData:
+                    errorMessage = "The data was invalid!"
+                case SWAPIError.jsonParsingFailure:
+                    errorMessage = "The JSON could not be Parsed!"
+                case SWAPIError.invalidUrl:
+                    errorMessage = "The URL was invalid!"
+                default:
+                    errorMessage = "There was an error!"
+                }
+                guard let alertMessage = errorMessage else { return }
+                let alert = UIAlertController(title: "Error", message: "\(alertMessage)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true, completion: nil)
+                print(error.localizedDescription)
+            }
         }
     }
 }
