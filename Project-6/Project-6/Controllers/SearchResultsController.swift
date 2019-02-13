@@ -139,7 +139,6 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
         selectedIndexOfCollectionLists = index
         switch entity {
         case .people:
-            
             title = "Characters"
             name.text = peopleCollectionList?.results[index].name
             if peopleCollectionList?.results[index].birthYear == "unknown" {
@@ -181,6 +180,16 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             } else {
                 resultsFive.text = peopleCollectionList?.results[index].hairColor.capitalized
             }
+            
+            let sortedPeople = peopleCollectionList?.results.sorted { $0.comparableHeight < $1.comparableHeight }
+            guard let totalEntitiesInCollection = sortedPeople?.count else { return }
+            var temporaryIndex = 0
+            while sortedPeople?[temporaryIndex].height == "unknown" {
+                temporaryIndex += 1
+            }
+            smallestEntity.text = sortedPeople?[temporaryIndex].name
+            largestEntity.text = sortedPeople?[totalEntitiesInCollection-1].name
+            
         case .vehicles:
             title = "Vehicles"
             name.text = vehicleCollectionList?.results[index].name
@@ -199,6 +208,16 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             }
             resultsFour.text = vehicleCollectionList?.results[index].vehicleClass.capitalized
             resultsFive.text = vehicleCollectionList?.results[index].crew
+            
+            let sortedVehicles = vehicleCollectionList?.results.sorted { $0.comparableLength < $1.comparableLength }
+            guard let totalEntitiesInCollection = sortedVehicles?.count else { return }
+            var temporaryIndex = 0
+            while sortedVehicles?[temporaryIndex].length == "unknown" {
+                temporaryIndex += 1
+            }
+            smallestEntity.text = sortedVehicles?[temporaryIndex].name
+            largestEntity.text = sortedVehicles?[totalEntitiesInCollection-1].name
+            
         case .starships:
             title = "Starships"
             name.text = starshipCollectionList?.results[index].name
@@ -217,6 +236,23 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             }
             resultsFour.text = starshipCollectionList?.results[index].starshipClass
             resultsFive.text = starshipCollectionList?.results[index].crew
+            
+            var temporaryIndex = 0
+            while temporaryIndex < starshipCollectionList?.results.count ?? 0 {
+                let newLength = self.starshipCollectionList?.results[temporaryIndex].length.replacingOccurrences(of: ",", with: "") ?? ""
+                self.starshipCollectionList?.results[temporaryIndex].length = newLength
+                temporaryIndex += 1
+            }
+            let sortedStarships = starshipCollectionList?.results.sorted { $0.comparableLength < $1.comparableLength }
+            guard let totalEntitiesInCollection = sortedStarships?.count else { return }
+            temporaryIndex = 0
+            while sortedStarships?[temporaryIndex].length == "unknown" {
+                temporaryIndex += 1
+            }
+            smallestEntity.text = sortedStarships?[temporaryIndex].name
+            largestEntity.text = sortedStarships?[totalEntitiesInCollection-1].name
+            dump(sortedStarships)
+            
         default:
             break
         }

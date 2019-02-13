@@ -21,3 +21,11 @@ struct Vehicle: Codable {
     let vehicleClass: String
     let crew: String
 }
+
+extension Vehicle {
+    var comparableLength: Double {
+        get {
+            return self.length.toDouble() ?? 0
+        }
+    }
+}

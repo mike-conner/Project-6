@@ -17,8 +17,15 @@ struct Starship: Codable {
     let name: String
     let manufacturer: String
     let costInCredits: String
-    let length: String
+    var length: String
     let starshipClass: String
     let crew: String
 }
 
+extension Starship {
+    var comparableLength: Double {
+        get {
+            return self.length.toDouble() ?? 0
+        }
+    }
+}
