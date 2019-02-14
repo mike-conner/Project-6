@@ -32,7 +32,7 @@ class SWAPIClient {
             DispatchQueue.main.async {
                 if let data = data {
                     guard let httpResponse = response as? HTTPURLResponse else {
-                        completion(nil, nil, nil, nil, SWAPIError.requestFailed)
+                        completion(nil, nil, nil, nil, SWAPIError.responseUnsuccessful)
                         return
                     }
                     if httpResponse.statusCode == 200 {
@@ -51,14 +51,14 @@ class SWAPIClient {
                                 let entities = try self.decoder.decode(Planets.self, from: data)
                                 completion(nil, nil, nil, entities, nil)
                             }
-                        } catch let error {
-                            completion(nil, nil, nil, nil, error)
+                        } catch _ {
+                            completion(nil, nil, nil, nil, SWAPIError.jsonParsingFailure)
                         }
                     } else {
-                        completion(nil, nil, nil, nil, SWAPIError.responseUnsuccessful(statusCode: httpResponse.statusCode))
+                        completion(nil, nil, nil, nil, SWAPIError.badRequestResponse)
                     }
-                } else if let error = error {
-                    completion(nil, nil, nil, nil, error)
+                } else if error != nil {
+                    completion(nil, nil, nil, nil, SWAPIError.requestFailed)
                 }
             }
         }

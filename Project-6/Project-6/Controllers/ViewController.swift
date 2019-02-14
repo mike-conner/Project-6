@@ -113,10 +113,9 @@ class ViewController: UIViewController {
                 case SWAPIError.requestFailed:
                     errorMessage = "Your request failed!"
                 case SWAPIError.responseUnsuccessful:
-//                    let statusCode = SWAPIError.responseUnsuccessful.statusCode
-                    errorMessage = "No response from server! Status code: )"
-                case SWAPIError.invalidData:
-                    errorMessage = "The data was invalid!"
+                    errorMessage = "No response from server!"
+                case SWAPIError.badRequestResponse:
+                    errorMessage = "The http response status code was not valid!"
                 case SWAPIError.jsonParsingFailure:
                     errorMessage = "The JSON could not be Parsed!"
                 case SWAPIError.invalidUrl:
@@ -128,7 +127,6 @@ class ViewController: UIViewController {
                 let alert = UIAlertController(title: "Error", message: "\(alertMessage)", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(alert, animated: true, completion: nil)
-                print(error.localizedDescription)
             }
         }
     }

@@ -10,8 +10,8 @@ import Foundation
 
 enum SWAPIError: Error {
     case requestFailed
-    case responseUnsuccessful(statusCode: Int)
-    case invalidData
+    case responseUnsuccessful
+    case badRequestResponse
     case jsonParsingFailure
     case invalidUrl
 }
