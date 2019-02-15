@@ -169,13 +169,13 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             title = "Characters"
             name.text = peopleCollectionList?.results[index].name
             if peopleCollectionList?.results[index].birthYear == "unknown" {
-                resultsOne.text = "Unknown"
+                resultsOne.text = "Birth year unknown"
             } else {
                 resultsOne.text = peopleCollectionList?.results[index].birthYear
             }
             if let homeworldName = peopleCollectionList?.results[index].getPlanetName(personUrl: peopleCollectionList?.results[index].homeworld ?? "", planets: planetCollectionList) {
                 if homeworldName == "unknown" {
-                    resultsTwo.text = "Unknown"
+                    resultsTwo.text = "Homeworld unknown"
                 } else {
                     resultsTwo.text = homeworldName
                 }
@@ -196,14 +196,14 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                 resultsThree.text = "\(displayedHeight)m"
             }
             if peopleCollectionList?.results[index].eyeColor == "unknown" {
-                resultsFour.text = "Unknown"
+                resultsFour.text = "Eye color unknown"
             } else {
                 resultsFour.text = peopleCollectionList?.results[index].eyeColor.capitalized
             }
             if peopleCollectionList?.results[index].hairColor == "n/a" || peopleCollectionList?.results[index].hairColor == "none" {
-                resultsFive.text = "No hair"
+                resultsFive.text = "Character has no hair"
             } else if peopleCollectionList?.results[index].hairColor == "unknown" {
-                resultsFive.text = "Unknown"
+                resultsFive.text = "Hair color unknown"
             } else {
                 resultsFive.text = peopleCollectionList?.results[index].hairColor.capitalized
             }
@@ -221,12 +221,12 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             title = "Vehicles"
             name.text = vehicleCollectionList?.results[index].name
             if vehicleCollectionList?.results[index].manufacturer == "unknown" {
-                resultsOne.text = "Unknown"
+                resultsOne.text = "Manufacturer unknown"
             } else {
-                resultsOne.text = vehicleCollectionList?.results[index].manufacturer.capitalized
+                resultsOne.text = vehicleCollectionList?.results[index].manufacturer
             }
             if vehicleCollectionList?.results[index].costInCredits == "unknown" {
-                resultsTwo.text = "Unknown"
+                resultsTwo.text = "Cost unknown"
             } else {
                 resultsTwo.text = vehicleCollectionList?.results[index].costInCredits
             }
@@ -249,19 +249,19 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             title = "Starships"
             name.text = starshipCollectionList?.results[index].name
             if starshipCollectionList?.results[index].manufacturer == "unknown" {
-                resultsOne.text = "Unknown"
+                resultsOne.text = "Manufacturer unknown"
             } else {
-                resultsOne.text = starshipCollectionList?.results[index].manufacturer.capitalized
+                resultsOne.text = starshipCollectionList?.results[index].manufacturer
             }
             if starshipCollectionList?.results[index].costInCredits == "unknown" {
-                resultsTwo.text = "Unknown"
+                resultsTwo.text = "Cost unknown"
             } else {
                 resultsTwo.text = starshipCollectionList?.results[index].costInCredits
             }
             if let length = starshipCollectionList?.results[index].length.toDouble() {
                 resultsThree.text = "\(length)m"
             }
-            resultsFour.text = starshipCollectionList?.results[index].starshipClass.capitalized
+            resultsFour.text = starshipCollectionList?.results[index].starshipClass
             resultsFive.text = starshipCollectionList?.results[index].crew
             
             var temporaryIndex = 0
@@ -326,9 +326,9 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     }
     
     func getListOfEntities(entity: EntityType, page: Int) {
-        SearchResultsController.client.getEntityList(entityType: entity, page: page) { people, vehicles, starships, planets, error in
-            if let people = people {
-                if self.peopleCollectionList?.results == nil {
+        SearchResultsController.client.getEntityList(entityType: entity, page: page) { entityResults, error in
+            if let entityResults = entityResults {
+/*                if self.peopleCollectionList?.results == nil {
                     self.peopleCollectionList = people
                     self.entityPageCounter = page + 1
                 } else {
@@ -391,7 +391,7 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                 }
                 if planets.next != nil {
                     self.getListOfEntities(entity: .planets, page: self.planetPageCounter)
-                }
+                }*/
             }
             if let error = error {
                 let errorMessage: String?
