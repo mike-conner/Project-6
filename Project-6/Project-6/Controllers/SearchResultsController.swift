@@ -38,7 +38,7 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var smallestEntity: UILabel!
     @IBOutlet weak var largestEntityLabel: UILabel!
     @IBOutlet weak var largestEntity: UILabel!
-    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var costConverterSwitch: UISegmentedControl!
     @IBOutlet weak var sizeConverterSwitch: UISegmentedControl!
@@ -50,13 +50,14 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SearchResultsController.dismissSearchResultsController))
         
         title = ""
-        
+        activityIndicator.isHidden = false
         smallestEntityLabel.isHidden = true
         largestEntityLabel.isHidden = true
         costConverterSwitch.isHidden = true
         sizeConverterSwitch.isHidden = true
 
         if let entity = entity {
+            showActivityIndicator(on: true)
             switch entity {
             case .people:
                 getListOfEntities(entity: .people, page: entityPageCounter)
@@ -276,9 +277,7 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                 temporaryIndex += 1
             }
             smallestEntity.text = sortedStarships?[temporaryIndex].name
-            largestEntity.text = sortedStarships?[totalEntitiesInCollection-1].name
-            dump(sortedStarships)
-            
+            largestEntity.text = sortedStarships?[totalEntitiesInCollection-1].name            
         default:
             break
         }
@@ -343,6 +342,7 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                     self.setUpResultsBasedOnEntity(entity: entity, index: 0)
                     self.pickerView.delegate = self
                     self.pickerView.dataSource = self
+                    self.showActivityIndicator(on: false)
                 }
             }
             if let vehicles = vehicles {
@@ -360,6 +360,7 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                     self.setUpResultsBasedOnEntity(entity: entity, index: 0)
                     self.pickerView.delegate = self
                     self.pickerView.dataSource = self
+                    self.showActivityIndicator(on: false)
                 }
             }
             if let starships = starships {
@@ -377,6 +378,7 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                     self.setUpResultsBasedOnEntity(entity: entity, index: 0)
                     self.pickerView.delegate = self
                     self.pickerView.dataSource = self
+                    self.showActivityIndicator(on: false)
                 }
             }
             if let planets = planets {
@@ -412,6 +414,14 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(alert, animated: true, completion: nil)
             }
+        }
+    }
+    
+    func showActivityIndicator(on: Bool) {
+        if on {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
         }
     }
 }
