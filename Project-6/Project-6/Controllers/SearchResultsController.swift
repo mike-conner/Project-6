@@ -164,6 +164,8 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     
     func setUpResultsBasedOnEntity(entity: EntityType, index: Int) {
         selectedIndexOfCollectionLists = index
+        sizeConverterSwitch.selectedSegmentIndex = 0
+        costConverterSwitch.selectedSegmentIndex = 0
         switch entity {
         case .people:
             title = "Characters"
@@ -314,8 +316,6 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        costConverterSwitch.selectedSegmentIndex = 0
-        sizeConverterSwitch.selectedSegmentIndex = 0
         if entity?.rawValue == "people" {
             setUpResultsBasedOnEntity(entity: .people, index: row)
         } else if entity?.rawValue == "vehicles" {
