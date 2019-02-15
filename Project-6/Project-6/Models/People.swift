@@ -28,14 +28,16 @@ extension Person {
             return self.height.toDouble() ?? 0
         }
     }
-    
+}
+
+extension Person {
     static func == (lhs: Person , rhs: Planet) -> Bool {
         return lhs.homeworld == rhs.url
     }
 
 }
 
-extension Person {    
+extension Person {
     func getPlanetName(personUrl: String, planets: Planets?) -> String? {
         var name: String?
         var index = 0

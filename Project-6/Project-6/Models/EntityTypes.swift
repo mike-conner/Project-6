@@ -8,6 +8,7 @@
 
 import Foundation
 
+// List the different possible Entity collection types.
 enum EntityType: String {
     case people
     case vehicles
