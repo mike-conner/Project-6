@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct People: Codable, EntityTypeGroup {
+struct People: Codable {
     var results: [Person]
     var next: String?
 }

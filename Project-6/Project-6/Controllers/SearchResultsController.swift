@@ -21,8 +21,6 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     var starshipCollectionList: Starships?
     var planetCollectionList: Planets?
     
-    var entityTypeGroup: []?    // testing something here...
-    
     var selectedIndexOfCollectionLists: Int = 0
     
     @IBOutlet weak var name: UILabel!
@@ -169,7 +167,6 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
         switch entity {
         case .people:
             title = "Characters"
-            entityTypeGroup = peopleCollectionList?.results      // Testing something here!!!
             name.text = peopleCollectionList?.results[index].name
             if peopleCollectionList?.results[index].birthYear == "unknown" {
                 resultsOne.text = "Unknown"

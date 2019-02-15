@@ -15,8 +15,3 @@ enum EntityType: String {
     case starships
     case planets
 }
-
-protocol EntityTypeGroup {
-    associatedtype entityType
-    var results: [entityType] { get }
-}

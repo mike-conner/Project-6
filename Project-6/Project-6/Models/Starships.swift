@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Starships: Codable, EntityTypeGroup {
+struct Starships: Codable {
     var results: [Starship]
     var next: String?
 }
