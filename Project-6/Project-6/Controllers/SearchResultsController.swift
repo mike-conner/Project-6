@@ -10,6 +10,11 @@ import UIKit
 
 class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    static let client = SWAPIClient(configuration: .default)
+    
+    var entityPageCounter = 1
+    var planetPageCounter = 1
+    
     var entity: EntityType?
     var peopleCollectionList: People?
     var vehicleCollectionList: Vehicles?
@@ -29,8 +34,12 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var resultsFour: UILabel!
     @IBOutlet weak var labelFive: UILabel!
     @IBOutlet weak var resultsFive: UILabel!
+    @IBOutlet weak var smallestEntityLabel: UILabel!
     @IBOutlet weak var smallestEntity: UILabel!
+    @IBOutlet weak var largestEntityLabel: UILabel!
     @IBOutlet weak var largestEntity: UILabel!
+    
+    
     @IBOutlet weak var costConverterSwitch: UISegmentedControl!
     @IBOutlet weak var sizeConverterSwitch: UISegmentedControl!
     
@@ -39,12 +48,26 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SearchResultsController.dismissSearchResultsController))
-        pickerView.delegate = self
-        pickerView.dataSource = self
+        
+        title = ""
+        
+        smallestEntityLabel.isHidden = true
+        largestEntityLabel.isHidden = true
+        costConverterSwitch.isHidden = true
+        sizeConverterSwitch.isHidden = true
 
         if let entity = entity {
-            setUpLabelsBasedOnEntity(entity: entity)
-            setUpResultsBasedOnEntity(entity: entity, index: 0)
+            switch entity {
+            case .people:
+                getListOfEntities(entity: .people, page: entityPageCounter)
+                getListOfEntities(entity: .planets, page: planetPageCounter)
+            case .vehicles:
+                getListOfEntities(entity: .vehicles, page: entityPageCounter)
+            case .starships:
+                getListOfEntities(entity: .starships, page: entityPageCounter)
+            default:
+                fatalError()
+            }
         }
     }
     
@@ -120,16 +143,19 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             labelThree.text = "Height"
             labelFour.text = "Eyes"
             labelFive.text = "Hair"
-            costConverterSwitch.isHidden = true
-            
+            smallestEntityLabel.isHidden = false
+            largestEntityLabel.isHidden = false
+            sizeConverterSwitch.isHidden = false
         case .vehicles, .starships:
             labelOne.text = "Make"
             labelTwo.text = "Cost"
             labelThree.text = "Length"
             labelFour.text = "Class"
             labelFive.text = "Crew"
+            smallestEntityLabel.isHidden = false
+            largestEntityLabel.isHidden = false
             costConverterSwitch.isHidden = false
-            
+            sizeConverterSwitch.isHidden = false
         default:
             break
         }
@@ -297,6 +323,95 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             setUpResultsBasedOnEntity(entity: .vehicles, index: row)
         } else {
             setUpResultsBasedOnEntity(entity: .starships, index: row)
+        }
+    }
+    
+    func getListOfEntities(entity: EntityType, page: Int) {
+        SearchResultsController.client.getEntityList(entityType: entity, page: page) { people, vehicles, starships, planets, error in
+            if let people = people {
+                if self.peopleCollectionList?.results == nil {
+                    self.peopleCollectionList = people
+                    self.entityPageCounter = page + 1
+                } else {
+                    self.peopleCollectionList?.results.append(contentsOf: people.results)
+                    self.entityPageCounter = page + 1
+                }
+                if people.next != nil {
+                    self.getListOfEntities(entity: .people, page: self.entityPageCounter)
+                } else {
+                    self.setUpLabelsBasedOnEntity(entity: entity)
+                    self.setUpResultsBasedOnEntity(entity: entity, index: 0)
+                    self.pickerView.delegate = self
+                    self.pickerView.dataSource = self
+                }
+            }
+            if let vehicles = vehicles {
+                if self.vehicleCollectionList?.results == nil {
+                    self.vehicleCollectionList = vehicles
+                    self.entityPageCounter = page + 1
+                } else {
+                    self.vehicleCollectionList?.results.append(contentsOf: vehicles.results)
+                    self.entityPageCounter = page + 1
+                }
+                if vehicles.next != nil {
+                    self.getListOfEntities(entity: .vehicles, page: self.entityPageCounter)
+                } else {
+                    self.setUpLabelsBasedOnEntity(entity: entity)
+                    self.setUpResultsBasedOnEntity(entity: entity, index: 0)
+                    self.pickerView.delegate = self
+                    self.pickerView.dataSource = self
+                }
+            }
+            if let starships = starships {
+                if self.starshipCollectionList?.results == nil {
+                    self.starshipCollectionList = starships
+                    self.entityPageCounter = page + 1
+                } else {
+                    self.starshipCollectionList?.results.append(contentsOf: starships.results)
+                    self.entityPageCounter = page + 1
+                }
+                if starships.next != nil {
+                    self.getListOfEntities(entity: .starships, page: self.entityPageCounter)
+                } else {
+                    self.setUpLabelsBasedOnEntity(entity: entity)
+                    self.setUpResultsBasedOnEntity(entity: entity, index: 0)
+                    self.pickerView.delegate = self
+                    self.pickerView.dataSource = self
+                }
+            }
+            if let planets = planets {
+                if self.planetCollectionList?.results == nil {
+                    self.planetCollectionList = planets
+                    self.planetPageCounter = page + 1
+                } else {
+                    self.planetCollectionList?.results.append(contentsOf: planets.results)
+                    self.planetPageCounter = page + 1
+                }
+                if planets.next != nil {
+                    self.getListOfEntities(entity: .planets, page: self.planetPageCounter)
+                }
+            }
+            if let error = error {
+                let errorMessage: String?
+                switch error {
+                case SWAPIError.requestFailed:
+                    errorMessage = "Your request failed!"
+                case SWAPIError.responseUnsuccessful:
+                    errorMessage = "No response from server!"
+                case SWAPIError.badRequestResponse:
+                    errorMessage = "The http response status code was not valid!"
+                case SWAPIError.jsonParsingFailure:
+                    errorMessage = "The JSON could not be Parsed!"
+                case SWAPIError.invalidUrl:
+                    errorMessage = "The URL was invalid!"
+                default:
+                    errorMessage = "There was an error!"
+                }
+                guard let alertMessage = errorMessage else { return }
+                let alert = UIAlertController(title: "Error", message: "\(alertMessage)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
 }
