@@ -77,7 +77,7 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     }
     
     @IBAction func changeMonetaryType(_ sender: Any) {
-        if resultsTwo.text == "Cost unknown" {
+        if resultsTwo.text == "Unknown" {
             let alert = UIAlertController(title: "Cost Unknown", message: "We have no value to convert", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
             self.present(alert, animated: true, completion: nil)
@@ -168,19 +168,15 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
         costConverterSwitch.selectedSegmentIndex = 0
         switch entity {
         case .people:
-            title = "Characters"
-            name.text = peopleCollectionList?.results[index].name
+            title = entity.rawValue.capitalized
+            name.text = peopleCollectionList?.results[index].name.capitalized
             if peopleCollectionList?.results[index].birthYear == "unknown" {
-                resultsOne.text = "Unknown"
+                resultsOne.text = peopleCollectionList?.results[index].birthYear.capitalized
             } else {
                 resultsOne.text = peopleCollectionList?.results[index].birthYear
             }
             if let homeworldName = peopleCollectionList?.results[index].getPlanetName(personUrl: peopleCollectionList?.results[index].homeworld ?? "", planets: planetCollectionList) {
-                if homeworldName == "unknown" {
-                    resultsTwo.text = "Unknown"
-                } else {
-                    resultsTwo.text = homeworldName
-                }
+                resultsTwo.text = homeworldName.capitalized
             }
             if let height = peopleCollectionList?.results[index].height.toDouble() {
                 switch sizeConverterSwitch.selectedSegmentIndex {
@@ -197,19 +193,12 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                 displayedHeight = height/100
                 resultsThree.text = "\(displayedHeight)m"
             }
-            if peopleCollectionList?.results[index].eyeColor == "unknown" {
-                resultsFour.text = "Unknown"
-            } else {
-                resultsFour.text = peopleCollectionList?.results[index].eyeColor.capitalized
-            }
+            resultsFour.text = peopleCollectionList?.results[index].eyeColor.capitalized.capitalized
             if peopleCollectionList?.results[index].hairColor == "n/a" || peopleCollectionList?.results[index].hairColor == "none" {
                 resultsFive.text = "No hair"
-            } else if peopleCollectionList?.results[index].hairColor == "unknown" {
-                resultsFive.text = "Unknown"
             } else {
                 resultsFive.text = peopleCollectionList?.results[index].hairColor.capitalized
             }
-            
             let sortedPeople = peopleCollectionList?.results.sorted { $0.comparableHeight < $1.comparableHeight }
             guard let totalEntitiesInCollection = sortedPeople?.count else { return }
             var temporaryIndex = 0
@@ -218,54 +207,34 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             }
             smallestEntity.text = sortedPeople?[temporaryIndex].name
             largestEntity.text = sortedPeople?[totalEntitiesInCollection-1].name
-            
         case .vehicles:
-            title = "Vehicles"
-            name.text = vehicleCollectionList?.results[index].name
-            if vehicleCollectionList?.results[index].manufacturer == "unknown" {
-                resultsOne.text = "Unknown"
-            } else {
-                resultsOne.text = vehicleCollectionList?.results[index].manufacturer.capitalized
-            }
-            if vehicleCollectionList?.results[index].costInCredits == "unknown" {
-                resultsTwo.text = "Unknown"
-            } else {
-                resultsTwo.text = vehicleCollectionList?.results[index].costInCredits
-            }
+            title = entity.rawValue.capitalized
+            name.text = vehicleCollectionList?.results[index].name.capitalized
+            resultsOne.text = vehicleCollectionList?.results[index].manufacturer.capitalized
+            resultsTwo.text = vehicleCollectionList?.results[index].costInCredits.capitalized
             if let length = vehicleCollectionList?.results[index].length.toDouble() {
                 resultsThree.text = "\(length)m"
             }
             resultsFour.text = vehicleCollectionList?.results[index].vehicleClass.capitalized
-            resultsFive.text = vehicleCollectionList?.results[index].crew
-            
+            resultsFive.text = vehicleCollectionList?.results[index].crew.capitalized
             let sortedVehicles = vehicleCollectionList?.results.sorted { $0.comparableLength < $1.comparableLength }
             guard let totalEntitiesInCollection = sortedVehicles?.count else { return }
             var temporaryIndex = 0
             while sortedVehicles?[temporaryIndex].length == "unknown" {
                 temporaryIndex += 1
             }
-            smallestEntity.text = sortedVehicles?[temporaryIndex].name
+            smallestEntity.text = sortedVehicles?[temporaryIndex].name.capitalized
             largestEntity.text = sortedVehicles?[totalEntitiesInCollection-1].name
-            
         case .starships:
-            title = "Starships"
-            name.text = starshipCollectionList?.results[index].name
-            if starshipCollectionList?.results[index].manufacturer == "unknown" {
-                resultsOne.text = "Unknown"
-            } else {
-                resultsOne.text = starshipCollectionList?.results[index].manufacturer.capitalized
-            }
-            if starshipCollectionList?.results[index].costInCredits == "unknown" {
-                resultsTwo.text = "Unknown"
-            } else {
-                resultsTwo.text = starshipCollectionList?.results[index].costInCredits
-            }
+            title = entity.rawValue.capitalized
+            name.text = starshipCollectionList?.results[index].name.capitalized
+            resultsOne.text = starshipCollectionList?.results[index].manufacturer.capitalized
+            resultsTwo.text = starshipCollectionList?.results[index].costInCredits.capitalized
             if let length = starshipCollectionList?.results[index].length.toDouble() {
                 resultsThree.text = "\(length)m"
             }
             resultsFour.text = starshipCollectionList?.results[index].starshipClass.capitalized
-            resultsFive.text = starshipCollectionList?.results[index].crew
-            
+            resultsFive.text = starshipCollectionList?.results[index].crew.capitalized
             var temporaryIndex = 0
             while temporaryIndex < starshipCollectionList?.results.count ?? 0 {
                 let newLength = self.starshipCollectionList?.results[temporaryIndex].length.replacingOccurrences(of: ",", with: "") ?? ""
@@ -278,11 +247,12 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             while sortedStarships?[temporaryIndex].length == "unknown" {
                 temporaryIndex += 1
             }
-            smallestEntity.text = sortedStarships?[temporaryIndex].name
-            largestEntity.text = sortedStarships?[totalEntitiesInCollection-1].name            
+            smallestEntity.text = sortedStarships?[temporaryIndex].name.capitalized
+            largestEntity.text = sortedStarships?[totalEntitiesInCollection-1].name.capitalized
         default:
             break
         }
+        dump(peopleCollectionList)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
