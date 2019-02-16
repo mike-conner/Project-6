@@ -92,6 +92,9 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                             inputKeyboardType: .decimalPad)
             { (input:String?) in
                 if input == "" {
+                    let alert = UIAlertController(title: "Exchange Rate Missing", message: "Value must be entered", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+                    self.present(alert, animated: true, completion: nil)
                     self.costConverterSwitch.selectedSegmentIndex = 0
                 } else if input?.toDouble() ?? 0 <= 0 {
                     let alert = UIAlertController(title: "Incorrect Value", message: "Value must be greater than 0", preferredStyle: .alert)
