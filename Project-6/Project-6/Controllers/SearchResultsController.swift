@@ -254,46 +254,6 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
         }
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch self.entity?.rawValue {
-        case "people":
-            guard let numberOfRows = peopleCollectionList?.results.count else { return 0 }
-            return numberOfRows
-        case "vehicles":
-            guard let numberOfRows = vehicleCollectionList?.results.count else { return 0 }
-            return numberOfRows
-        case "starships":
-            guard let numberOfRows = starshipCollectionList?.results.count else { return 0 }
-            return numberOfRows
-        default:
-        return 0
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if entity?.rawValue == "people" {
-            return peopleCollectionList?.results[row].name
-        } else if entity?.rawValue == "vehicles" {
-            return vehicleCollectionList?.results[row].name
-        } else {
-            return starshipCollectionList?.results[row].name
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if entity?.rawValue == "people" {
-            setUpResultsBasedOnEntity(entity: .people, index: row)
-        } else if entity?.rawValue == "vehicles" {
-            setUpResultsBasedOnEntity(entity: .vehicles, index: row)
-        } else {
-            setUpResultsBasedOnEntity(entity: .starships, index: row)
-        }
-    }
-    
     func getListOfEntities(entity: EntityType, page: Int) {
         SearchResultsController.client.getEntityList(entityType: entity, page: page) { people, vehicles, starships, planets, error in
             if let people = people {
@@ -386,6 +346,46 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
         }
     }
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch self.entity?.rawValue {
+        case "people":
+            guard let numberOfRows = peopleCollectionList?.results.count else { return 0 }
+            return numberOfRows
+        case "vehicles":
+            guard let numberOfRows = vehicleCollectionList?.results.count else { return 0 }
+            return numberOfRows
+        case "starships":
+            guard let numberOfRows = starshipCollectionList?.results.count else { return 0 }
+            return numberOfRows
+        default:
+        return 0
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if entity?.rawValue == "people" {
+            return peopleCollectionList?.results[row].name
+        } else if entity?.rawValue == "vehicles" {
+            return vehicleCollectionList?.results[row].name
+        } else {
+            return starshipCollectionList?.results[row].name
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if entity?.rawValue == "people" {
+            setUpResultsBasedOnEntity(entity: .people, index: row)
+        } else if entity?.rawValue == "vehicles" {
+            setUpResultsBasedOnEntity(entity: .vehicles, index: row)
+        } else {
+            setUpResultsBasedOnEntity(entity: .starships, index: row)
+        }
+    }
+
     func showActivityIndicator(on: Bool) {
         if on {
             activityIndicator.startAnimating()
