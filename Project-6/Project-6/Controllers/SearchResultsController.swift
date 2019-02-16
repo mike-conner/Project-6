@@ -252,7 +252,6 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
         default:
             break
         }
-        dump(peopleCollectionList)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
