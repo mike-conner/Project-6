@@ -60,12 +60,12 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             showActivityIndicator(on: true)
             switch entity {
             case .people:
-                getListOfEntities(entity: .people, page: entityPageCounter)
-                getListOfEntities(entity: .planets, page: planetPageCounter)
+                getListOfPeople(page: entityPageCounter)
+                getListOfPlanets(page: planetPageCounter)
             case .vehicles:
-                getListOfEntities(entity: .vehicles, page: entityPageCounter)
+                getListOfVehicles(page: entityPageCounter)
             case .starships:
-                getListOfEntities(entity: .starships, page: entityPageCounter)
+                getListOfStarships(page: entityPageCounter)
             default:
                 fatalError()
             }
@@ -257,8 +257,8 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
         }
     }
     
-    func getListOfEntities(entity: EntityType, page: Int) {
-        SearchResultsController.client.getEntityList(entityType: entity, page: page) { people, vehicles, starships, planets, error in
+    func getListOfPeople(page: Int) {
+        SearchResultsController.client.getListOfPeople(page: page) { people, error in
             if let people = people {
                 if self.peopleCollectionList?.results == nil {
                     self.peopleCollectionList = people
@@ -268,15 +268,23 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                     self.entityPageCounter = page + 1
                 }
                 if people.next != nil {
-                    self.getListOfEntities(entity: .people, page: self.entityPageCounter)
+                    self.getListOfPeople(page: self.entityPageCounter)
                 } else {
-                    self.setUpLabelsBasedOnEntity(entity: entity)
-                    self.setUpResultsBasedOnEntity(entity: entity, index: 0)
+                    self.setUpLabelsBasedOnEntity(entity: .people)
+                    self.setUpResultsBasedOnEntity(entity: .people, index: 0)
                     self.pickerView.delegate = self
                     self.pickerView.dataSource = self
                     self.showActivityIndicator(on: false)
                 }
             }
+            if let error = error {
+                self.displayError(error: error)
+            }
+        }
+    }
+    
+    func getListOfVehicles(page: Int) {
+        SearchResultsController.client.getListOfVehicles(page: page) { vehicles, error in
             if let vehicles = vehicles {
                 if self.vehicleCollectionList?.results == nil {
                     self.vehicleCollectionList = vehicles
@@ -286,15 +294,23 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                     self.entityPageCounter = page + 1
                 }
                 if vehicles.next != nil {
-                    self.getListOfEntities(entity: .vehicles, page: self.entityPageCounter)
+                    self.getListOfVehicles(page: self.entityPageCounter)
                 } else {
-                    self.setUpLabelsBasedOnEntity(entity: entity)
-                    self.setUpResultsBasedOnEntity(entity: entity, index: 0)
+                    self.setUpLabelsBasedOnEntity(entity: .vehicles)
+                    self.setUpResultsBasedOnEntity(entity: .vehicles, index: 0)
                     self.pickerView.delegate = self
                     self.pickerView.dataSource = self
                     self.showActivityIndicator(on: false)
                 }
             }
+            if let error = error {
+                self.displayError(error: error)
+            }
+        }
+    }
+    
+    func getListOfStarships(page: Int) {
+        SearchResultsController.client.getListOfStarships(page: page) { starships, error in
             if let starships = starships {
                 if self.starshipCollectionList?.results == nil {
                     self.starshipCollectionList = starships
@@ -304,15 +320,23 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                     self.entityPageCounter = page + 1
                 }
                 if starships.next != nil {
-                    self.getListOfEntities(entity: .starships, page: self.entityPageCounter)
+                    self.getListOfStarships(page: self.entityPageCounter)
                 } else {
-                    self.setUpLabelsBasedOnEntity(entity: entity)
-                    self.setUpResultsBasedOnEntity(entity: entity, index: 0)
+                    self.setUpLabelsBasedOnEntity(entity: .starships)
+                    self.setUpResultsBasedOnEntity(entity: .starships, index: 0)
                     self.pickerView.delegate = self
                     self.pickerView.dataSource = self
                     self.showActivityIndicator(on: false)
                 }
             }
+            if let error = error {
+                self.displayError(error: error)
+            }
+        }
+    }
+    
+    func getListOfPlanets(page: Int) {
+        SearchResultsController.client.getListOfPlanets(page: page) { planets, error in
             if let planets = planets {
                 if self.planetCollectionList?.results == nil {
                     self.planetCollectionList = planets
@@ -322,31 +346,32 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                     self.planetPageCounter = page + 1
                 }
                 if planets.next != nil {
-                    self.getListOfEntities(entity: .planets, page: self.planetPageCounter)
+                    self.getListOfPlanets(page: self.planetPageCounter)
                 }
-            }
-            if let error = error {
-                let errorMessage: String?
-                switch error {
-                case SWAPIError.requestFailed:
-                    errorMessage = "Your request failed!"
-                case SWAPIError.responseUnsuccessful:
-                    errorMessage = "No response from server!"
-                case SWAPIError.badRequestResponse:
-                    errorMessage = "The http response status code was not valid!"
-                case SWAPIError.jsonParsingFailure:
-                    errorMessage = "The JSON could not be Parsed!"
-                case SWAPIError.invalidUrl:
-                    errorMessage = "The URL was invalid!"
-                default:
-                    errorMessage = "There was an error!"
-                }
-                guard let alertMessage = errorMessage else { return }
-                let alert = UIAlertController(title: "Error", message: "\(alertMessage)", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default))
-                self.present(alert, animated: true, completion: nil)
             }
         }
+    }
+    
+    func displayError(error: Error) {
+        let errorMessage: String?
+        switch error {
+        case SWAPIError.requestFailed:
+            errorMessage = "Your request failed!"
+        case SWAPIError.responseUnsuccessful:
+            errorMessage = "No response from server!"
+        case SWAPIError.badRequestResponse:
+            errorMessage = "The http response status code was not valid!"
+        case SWAPIError.jsonParsingFailure:
+            errorMessage = "The JSON could not be Parsed!"
+        case SWAPIError.invalidUrl:
+            errorMessage = "The URL was invalid!"
+        default:
+            errorMessage = "There was an error!"
+        }
+        guard let alertMessage = errorMessage else { return }
+        let alert = UIAlertController(title: "Error", message: "\(alertMessage)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
