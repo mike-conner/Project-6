@@ -63,15 +63,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		132C713D21FFE39100B568E4 /* Networking */ = {
+		132908CD2218EA4600BEA130 /* Networking Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				13F38EDC2206215C0022F8DA /* SWAPIError.swift */,
-				13F38EDE220621C40022F8DA /* SWAPIClient.swift */,
 				13FAA5F12218CD2B00E99A53 /* SWAPIClientPeopleExtension.swift */,
 				13FAA5F32218CE8700E99A53 /* SWAPIClientVehicleExtension.swift */,
 				13FAA5F52218CF2500E99A53 /* SWAPIClientStarshipExtension.swift */,
 				13FAA5F72218CF8900E99A53 /* SWAPIClientPlanetExtension.swift */,
+			);
+			path = "Networking Extensions";
+			sourceTree = "<group>";
+		};
+		132C713D21FFE39100B568E4 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				13F38EDE220621C40022F8DA /* SWAPIClient.swift */,
+				13F38EDC2206215C0022F8DA /* SWAPIError.swift */,
+				132908CD2218EA4600BEA130 /* Networking Extensions */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -100,6 +108,7 @@
 				132C713D21FFE39100B568E4 /* Networking */,
 				13E199D321FE3847003D1777 /* Controllers */,
 				13E199D221FE3831003D1777 /* Views */,
+				1382F736220D0F8800CB10F0 /* HelperExtensions.swift */,
 				13E199BF21FE37E6003D1777 /* AppDelegate.swift */,
 				13E199C621FE37E6003D1777 /* Assets.xcassets */,
 				13E199C821FE37E6003D1777 /* LaunchScreen.storyboard */,
@@ -116,7 +125,6 @@
 				13F38EE0220649750022F8DA /* Vehicles.swift */,
 				13F38EE222064AD90022F8DA /* Starships.swift */,
 				13A2BF6622073691007F0C41 /* Planets.swift */,
-				1382F736220D0F8800CB10F0 /* HelperExtensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
