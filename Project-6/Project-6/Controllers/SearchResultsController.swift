@@ -48,6 +48,7 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SearchResultsController.dismissSearchResultsController))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(SearchResultsController.reloadEntityData))
         
         title = ""
         activityIndicator.isHidden = false
@@ -69,6 +70,26 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
             default:
                 fatalError()
             }
+        }
+    }
+    
+    @objc func reloadEntityData() {
+        activityIndicator.isHidden = false
+        showActivityIndicator(on: true)
+        entityPageCounter = 1
+        planetPageCounter = 1
+        if let entity = entity {
+            switch entity {
+        case .people:
+            getListOfPeople(page: entityPageCounter)
+            getListOfPlanets(page: planetPageCounter)
+        case .vehicles:
+            getListOfVehicles(page: entityPageCounter)
+        case .starships:
+            getListOfStarships(page: entityPageCounter)
+        default:
+            return
+        }
         }
     }
     
@@ -349,6 +370,9 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
                     self.getListOfPlanets(page: self.planetPageCounter)
                 }
             }
+            if let error = error {
+                self.displayError(error: error)
+            }
         }
     }
     
@@ -372,6 +396,7 @@ class SearchResultsController: UITableViewController, UIPickerViewDelegate, UIPi
         let alert = UIAlertController(title: "Error", message: "\(alertMessage)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alert, animated: true, completion: nil)
+        showActivityIndicator(on: false)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -427,7 +452,6 @@ extension UIViewController {
     func showInputDialog(title:String? = nil,
                          subtitle:String? = nil,
                          actionTitle:String? = "Add",
-                         cancelTitle:String? = "Cancel",
                          inputPlaceholder:String? = nil,
                          inputKeyboardType:UIKeyboardType = UIKeyboardType.decimalPad,
                          actionHandler: ((_ text: String?) -> Void)? = nil) {
